@@ -961,7 +961,7 @@
     <link href="/2015/06/03/Use-Material-Design/"/>
     <id>/2015/06/03/Use-Material-Design/</id>
     <published>2015-06-03T13:17:22.000Z</published>
-    <updated>2015-06-04T08:24:32.000Z</updated>
+    <updated>2016-04-08T08:15:14.000Z</updated>
     <content type="html"><![CDATA[<p>Material Design 是我很喜欢的设计风格，简约至上。去年 Google IO 推出之后，就已经了解了。但是一直没有怎么看 Android L 的 API。趁 Android M 推出这段时间，就试着去使用了下 Android 5.0。</p>
 <p><a href="http://design.1sters.com" target="_blank" rel="external">Material Design 中文版</a> 刚出来的时候，参与翻译了其中一章，算是国内最早的中文版吧。</p>
 <p>看了 Android Training 里面的 Create App With Material Design，就写了一个简单的 Demo，不完整，但也涉及到了大部分常用的内容。</p>
@@ -972,9 +972,9 @@
 <li><strong>Palette</strong></li>
 <li><strong>Ripple</strong></li>
 </ul>
-<h3 id="Screenshot">Screenshot</h3><p><img src="material1.png" alt=""></p>
-<p><img src="material3.png" alt=""></p>
-<p><img src="material2.png" alt=""></p>
+<h3 id="Screenshot">Screenshot</h3><p><img src="http://7xluln.com1.z0.glb.clouddn.com/material1.png" alt=""></p>
+<p><img src="http://7xluln.com1.z0.glb.clouddn.com/material3.png" alt=""></p>
+<p><img src="http://7xluln.com1.z0.glb.clouddn.com/material2.png" alt=""></p>
 <h3 id="Material_Theme">Material Theme</h3><p>Material 的主题其实和 Holo 的类型差不多，有这样的：</p>
 <p><code>android:Theme.Material.Light</code><br><code>android:Theme.Material.Light.DarkActionBar</code><br><code>android:Theme.Material</code></p>
 <p>除了这个，还可以在 Theme 里面重写一些属性来定义状态栏、标题栏和一些控件的颜色。</p>
