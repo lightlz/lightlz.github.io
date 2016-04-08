@@ -1,0 +1,698 @@
+<!doctype html>
+<html class="theme-next use-motion theme-next-mist">
+<head>
+  
+
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+  <link href='//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+
+
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.1"/>
+
+
+    <meta name="description" content="Someday you may become the one you want to be." />
+
+
+
+  <meta name="keywords" content="Android RecyclerView,瀑布流," />
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Light" type="application/atom+xml" />
+
+
+
+  <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.1" />
+
+
+<meta name="description" content="概述RecyclerView 好似说烂了，之前也使用过，好似也没有在正式开发中使用，现在想真正切换过来，想想将会使用到的功能，逐一整理出来。比如，下拉刷新，上拉加载，瀑布流等。
+关于 RecyclerView 的基本信息不再介绍，这篇主要整理 RecyclerView 的基本使用，线性列表，网格布局，瀑布流，点击事件等。
+Dependencies前提条件得满足是吧。
+12compile &apos;com.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="RecyclerView 1">
+<meta property="og:url" content="/2015/10/08/RecyclerView-1/index.html">
+<meta property="og:site_name" content="Light">
+<meta property="og:description" content="概述RecyclerView 好似说烂了，之前也使用过，好似也没有在正式开发中使用，现在想真正切换过来，想想将会使用到的功能，逐一整理出来。比如，下拉刷新，上拉加载，瀑布流等。
+关于 RecyclerView 的基本信息不再介绍，这篇主要整理 RecyclerView 的基本使用，线性列表，网格布局，瀑布流，点击事件等。
+Dependencies前提条件得满足是吧。
+12compile &apos;com.">
+<meta property="og:image" content="http://7xluln.com1.z0.glb.clouddn.com/recycler/LinearLayoutManager.png">
+<meta property="og:image" content="http://7xluln.com1.z0.glb.clouddn.com/recycler/GridLayoutManager.png">
+<meta property="og:image" content="http://7xluln.com1.z0.glb.clouddn.com/recycler/StaggeredGridLayoutManager.png">
+<meta property="og:image" content="http://7xluln.com1.z0.glb.clouddn.com/recycler/item.gif">
+<meta property="og:updated_time" content="2015-10-15T07:53:35.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="RecyclerView 1">
+<meta name="twitter:description" content="概述RecyclerView 好似说烂了，之前也使用过，好似也没有在正式开发中使用，现在想真正切换过来，想想将会使用到的功能，逐一整理出来。比如，下拉刷新，上拉加载，瀑布流等。
+关于 RecyclerView 的基本信息不再介绍，这篇主要整理 RecyclerView 的基本使用，线性列表，网格布局，瀑布流，点击事件等。
+Dependencies前提条件得满足是吧。
+12compile &apos;com.">
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: 'post'
+  };
+</script>
+
+  <title> RecyclerView 1 | Light </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?c4edb84f156d669a91e82332bff844a0";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><h1 class="site-meta">
+  <span class="logo-line-before"><i></i></span>
+  <a href="/" class="brand" rel="start">
+      <span class="logo">
+        <i class="icon-next-logo"></i>
+      </span>
+      <span class="site-title">Light</span>
+  </a>
+  <span class="logo-line-after"><i></i></span>
+</h1>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            <i class="menu-item-icon icon-next-home"></i> <br />
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/all-categories" rel="section">
+            <i class="menu-item-icon icon-next-categories"></i> <br />
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            <i class="menu-item-icon icon-next-archives"></i> <br />
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/all-tags" rel="section">
+            <i class="menu-item-icon icon-next-tags"></i> <br />
+            Tags
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content"> 
+
+  <div id="posts" class="posts-expand">
+    
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              RecyclerView 1
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          Posted on
+          <time itemprop="dateCreated" datetime="2015-10-08T23:18:04+08:00" content="2015-10-08">
+            2015-10-08
+          </time>
+        </span>
+
+        
+
+        
+          
+            <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2015/10/08/RecyclerView-1/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2015/10/08/RecyclerView-1/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><h3 id="概述">概述</h3><p>RecyclerView 好似说烂了，之前也使用过，好似也没有在正式开发中使用，现在想真正切换过来，想想将会使用到的功能，逐一整理出来。比如，下拉刷新，上拉加载，瀑布流等。</p>
+<p>关于 RecyclerView 的基本信息不再介绍，这篇主要整理 RecyclerView 的基本使用，线性列表，网格布局，瀑布流，点击事件等。</p>
+<h3 id="Dependencies">Dependencies</h3><p>前提条件得满足是吧。</p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">compile</span> <span class="string">'com.android.support:cardview-v7:23+'</span></span><br><span class="line"><span class="keyword">compile</span> <span class="string">'com.android.support:recyclerview-v7:23+'</span></span><br></pre></td></tr></table></figure>
+<p>配合 CardView 感觉效果让我比较愉悦。RecyclerView 好似没有像 ListView 那样的 item 分割线，所以 CardView 的阴影层级能够很好的把 item 间隔。</p>
+<a id="more"></a>
+<h3 id="RecyclerView">RecyclerView</h3><h4 id="布局">布局</h4><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="tag">android</span><span class="class">.support</span><span class="class">.v7</span><span class="class">.widget</span><span class="class">.RecyclerView</span></span><br><span class="line">   <span class="rule"><span class="attribute">android</span>:<span class="value">id=<span class="string">"@+id/recycler"</span></span><br><span class="line">   android:layout_height=<span class="string">"match_parent"</span></span><br><span class="line">   android:layout_width=<span class="string">"match_parent"</span> /&gt;</span></span></span><br></pre></td></tr></table></figure>
+<h4 id="CardView">CardView</h4><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;android<span class="class">.support</span><span class="class">.v7</span><span class="class">.widget</span><span class="class">.CardView</span> xmlns:android=<span class="string">"http://schemas.android.com/apk/res/android"</span></span><br><span class="line">    android:layout_width=<span class="string">"match_parent"</span> android:layout_height=<span class="string">"match_parent"</span></span><br><span class="line">    android:layout_margin=<span class="string">"2dp"</span></span><br><span class="line">    &gt;</span><br><span class="line">    &lt;TextView</span><br><span class="line">        android:id=<span class="string">"@+id/item_tv"</span></span><br><span class="line">        android:layout_width=<span class="string">"match_parent"</span></span><br><span class="line">        android:layout_height=<span class="string">"96dp"</span></span><br><span class="line">        android:<span class="attribute">background</span>=<span class="string">"?attr/colorAccent"</span>/&gt;</span><br><span class="line">&lt;/android<span class="class">.support</span><span class="class">.v7</span><span class="class">.widget</span><span class="class">.CardView</span>&gt;</span><br></pre></td></tr></table></figure>
+<p>是的，item 选项只有一个 TextView。</p>
+<h4 id="Adapter">Adapter</h4><p>Adapter 需要继承 RecyclerView.Adapter。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SampleAdapter</span> <span class="keyword">extends</span> <span class="title">RecyclerView</span>.<span class="title">Adapter</span>&lt;<span class="title">SampleAdapter</span>.<span class="title">ViewHolder</span>&gt; </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> Context mCon;</span><br><span class="line">    <span class="keyword">private</span> List&lt;String&gt; mDataSet;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">SampleAdapter</span><span class="params">(Context mCon)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.mCon = mCon;</span><br><span class="line">        mDataSet = <span class="keyword">new</span> ArrayList&lt;String&gt;();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">30</span>;i++)&#123;</span><br><span class="line">            mDataSet.add(<span class="string">""</span>+i);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="annotation">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> ViewHolder <span class="title">onCreateViewHolder</span><span class="params">(ViewGroup parent, <span class="keyword">int</span> viewType)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> ViewHolder(LayoutInflater.from(mCon).inflate(R.layout.item_recycler,parent,<span class="keyword">false</span>));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="annotation">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onBindViewHolder</span><span class="params">(<span class="keyword">final</span> ViewHolder holder, <span class="keyword">int</span> position)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="annotation">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getItemCount</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> mDataSet.size();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="annotation">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onBindViewHolder</span><span class="params">(ViewHolder holder, <span class="keyword">int</span> position, List&lt;Object&gt; payloads)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.onBindViewHolder(holder, position, payloads);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">ViewHolder</span> <span class="keyword">extends</span> <span class="title">RecyclerView</span>.<span class="title">ViewHolder</span></span>&#123;</span><br><span class="line"></span><br><span class="line">        TextView tv ;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="title">ViewHolder</span><span class="params">(View itemView)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">super</span>(itemView);</span><br><span class="line">            tv = (TextView)itemView.findViewById(R.id.item_tv);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<p>不再像 ListView 一样针对 View，<code>onCreateViewHolder</code> 直接返回的是 ViewHolder，同时在 <code>onBindViewHolder</code> 中绑定数据。 </p>
+<h4 id="LayoutManager">LayoutManager</h4><p>RecyclerView 通过 LayoutManager 管理 item 的布局方式。</p>
+<h5 id="LinearLayoutManager">LinearLayoutManager</h5><figure class="highlight openscad"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">recyelerView = <span class="params">(RecyclerView)</span>findViewById<span class="params">(R.id.recycler)</span>;</span><br><span class="line">recyelerView.setLayoutManager<span class="params">(new LinearLayoutManager<span class="params">(this)</span>)</span>;</span><br><span class="line">adapter = new SampleAdapter<span class="params">(this)</span>;</span><br><span class="line">recyelerView.setAdapter<span class="params">(adapter)</span>;</span><br></pre></td></tr></table></figure>
+<p><img src="http://7xluln.com1.z0.glb.clouddn.com/recycler/LinearLayoutManager.png" alt=""></p>
+<h5 id="GridLayoutManager">GridLayoutManager</h5><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">recyelerView.setLayoutManager(<span class="keyword">new</span> GridLayoutManager(<span class="keyword">this</span>,<span class="number">2</span>));</span><br></pre></td></tr></table></figure>
+<p>RecyclerView 使用 GridLayoutManager 就可以替代 GridView，item 间隙可以使用 RecyclerView.ItemDecoration 定义。</p>
+<p><img src="http://7xluln.com1.z0.glb.clouddn.com/recycler/GridLayoutManager.png" alt=""></p>
+<h5 id="StaggeredGridLayoutManager">StaggeredGridLayoutManager</h5><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">recyelerView</span><span class="class">.setLayoutManager</span>(<span class="tag">new</span> <span class="tag">StaggeredGridLayoutManager</span>(2, <span class="tag">OrientationHelper</span><span class="class">.VERTICAL</span>));</span><br></pre></td></tr></table></figure>
+<p>使用瀑布流很好像很方便，这里只是更改了下布局的高度。</p>
+<p><img src="http://7xluln.com1.z0.glb.clouddn.com/recycler/StaggeredGridLayoutManager.png" alt=""></p>
+<h4 id="点击事件">点击事件</h4><p>你应该知道 RecyclerView 没有提供 OnItemClickLinstener，所以这部分需要自己去实现。像很多 Listener 一样，在 Adapter 中使用回调就可以解决。</p>
+<p>声明一个点击事件监听器接口。</p>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title">OnItemClickListener</span>&#123;</span><br><span class="line">   <span class="function"><span class="keyword">void</span> <span class="title">onItemClick</span>(<span class="params">View view,<span class="keyword">int</span> position</span>)</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">private</span> OnItemClickListener mOnItemClickListener;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setmOnItemClickListener</span>(<span class="params">OnItemClickListener mOnItemClickListener</span>) </span>&#123;</span><br><span class="line">   <span class="keyword">this</span>.mOnItemClickListener = mOnItemClickListener;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在 Activity 中设置这个监听器。</p>
+<figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">adapter.setmOnItemClickListener(<span class="keyword">new</span> SampleAdapter.OnItemClickListener() &#123;</span><br><span class="line">  <span class="annotation">@Override</span></span><br><span class="line">  <span class="keyword">public</span> <span class="function"><span class="keyword">void</span> <span class="title">onItemClick</span><span class="params">(View view, <span class="keyword">int</span> position)</span> </span>&#123;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>在 onBindViewHolder 中回调 onItemClick 方法。</p>
+<figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">holder.tv.setOnClickListener(<span class="keyword">new</span> View.OnClickListener() &#123;</span><br><span class="line"> <span class="annotation">@Override</span></span><br><span class="line"> <span class="keyword">public</span> <span class="function"><span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span> </span>&#123;</span><br><span class="line">     <span class="keyword">int</span> position = holder.getLayoutPosition();</span><br><span class="line">     mOnItemClickListener.onItemClick(holder.tv,position);</span><br><span class="line"> &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>当然，你应该把这个 <code>holder.tv</code> 换成 CardView 那个控件。这里只是一个演示方法。</p>
+<h4 id="ItemAnimator">ItemAnimator</h4><p>RecyclerView 对 item 的增加删除提供了默认的动画效果。</p>
+<figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">notifyItemInserted<span class="list">(<span class="keyword">position</span>)</span><span class="comment">;</span></span><br><span class="line">notifyItemRemoved<span class="list">(<span class="keyword">positon</span>)</span><span class="comment">;</span></span><br></pre></td></tr></table></figure>
+<p><img src="http://7xluln.com1.z0.glb.clouddn.com/recycler/item.gif" alt=""></p>
+<p>上图是一个删除 item 的动画效果，更多动画效果可以参考 <a href="https://github.com/gabrielemariotti/RecyclerViewItemAnimators" target="_blank" rel="external">RecyclerViewItemAnimators</a>。</p>
+<h3 id="源码">源码</h3><p><a href="https://github.com/lightlz/RecyclerViewDemo" target="_blank" rel="external">Here</a></p>
+<blockquote>
+<p>代码因为演示多种效果，有比较多的注释。看不同功能的时候，请打开相应的注释。</p>
+</blockquote>
+</span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Android-RecyclerView/" rel="tag">#Android RecyclerView</a>
+          
+            <a href="/tags/瀑布流/" rel="tag">#瀑布流</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/10/14/RecyclerView-2/" rel="prev">RecyclerView 2</a>
+            
+          </div>
+
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/09/29/Android-Support-Design-Library-CoordinatorLayout/" rel="next">Android Support Design Library - CoordinatorLayout</a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+ </div>
+
+        
+
+        
+          <div class="comments" id="comments">
+            
+              <div class="ds-thread" data-thread-key="2015/10/08/RecyclerView-1/"
+                   data-title="RecyclerView 1" data-url="/2015/10/08/RecyclerView-1/">
+              </div>
+            
+          </div>
+        
+      </div>
+
+      
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table Of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="/images/pic.jpg" alt="Light" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">Light</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description">Someday you may become the one you want to be.</p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">24</span>
+              <span class="site-state-item-name">posts</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/all-categories">
+              <span class="site-state-item-count">5</span>
+              <span class="site-state-item-name">categories</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/all-tags">
+              <span class="site-state-item-count">39</span>
+              <span class="site-state-item-name">tags</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="menu-item-icon icon-next-feed"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/lightlz" target="_blank">GitHub</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto://light.lz1993@gmail.com" target="_blank">Email</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator"></div>
+          <div class="post-toc">
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#概述"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Dependencies"><span class="nav-number">2.</span> <span class="nav-text">Dependencies</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RecyclerView"><span class="nav-number">3.</span> <span class="nav-text">RecyclerView</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#布局"><span class="nav-number">3.1.</span> <span class="nav-text">布局</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#CardView"><span class="nav-number">3.2.</span> <span class="nav-text">CardView</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Adapter"><span class="nav-number">3.3.</span> <span class="nav-text">Adapter</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#LayoutManager"><span class="nav-number">3.4.</span> <span class="nav-text">LayoutManager</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#LinearLayoutManager"><span class="nav-number">3.4.1.</span> <span class="nav-text">LinearLayoutManager</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#GridLayoutManager"><span class="nav-number">3.4.2.</span> <span class="nav-text">GridLayoutManager</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#StaggeredGridLayoutManager"><span class="nav-number">3.4.3.</span> <span class="nav-text">StaggeredGridLayoutManager</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#点击事件"><span class="nav-number">3.5.</span> <span class="nav-text">点击事件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ItemAnimator"><span class="nav-number">3.6.</span> <span class="nav-text">ItemAnimator</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#源码"><span class="nav-number">4.</span> <span class="nav-text">源码</span></a></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator"></div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner"> <div class="copyright" >
+  
+  &copy; &nbsp; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Light</span>
+</div>
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="http://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+ </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+    
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"llzz"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+    
+     
+  	<script src="/js/ua-parser.min.js"></script>
+  	<script src="/js/hook-duoshuo.js"></script>
+  
+
+    
+  
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.1"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.1"></script>
+  
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.1" id="motion.global"></script>
+
+
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.1"></script>
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.1" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 0.4 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
+      }
+    }
+  });
+</script>
+
+
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+    });
+  </script>
+
+  
+
+  
+  
+
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"slide":{"type":"slide","bdImg":"3","bdPos":"left","bdTop":"250"}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+
+
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,744 @@
+<!doctype html>
+<html class="theme-next use-motion theme-next-mist">
+<head>
+  
+
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+  <link href='//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+
+
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.1"/>
+
+
+    <meta name="description" content="Someday you may become the one you want to be." />
+
+
+
+  <meta name="keywords" content="Android 源码,Lollipop Source," />
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Light" type="application/atom+xml" />
+
+
+
+  <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.1" />
+
+
+<meta name="description" content="突然觉的学习 Android 应该去了解下它的源码，虽然内容量很大很大，但是慢慢的去看一下想了解的模块，还是可以的。这将会是一个漫长的过程。
+环境
+OS X Yosemite
+Xcode 6.3.2
+Android 5.0.1
+
+按照官网的 Initializing a Build Environment 来配置环境，这里应该是没有什么问题的。很无奈的是下载源码挂 VPN 断断续续的竟然下了近一周">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Build Android 5.0 Source">
+<meta property="og:url" content="/2015/06/17/Build-Android-5-0-Source/index.html">
+<meta property="og:site_name" content="Light">
+<meta property="og:description" content="突然觉的学习 Android 应该去了解下它的源码，虽然内容量很大很大，但是慢慢的去看一下想了解的模块，还是可以的。这将会是一个漫长的过程。
+环境
+OS X Yosemite
+Xcode 6.3.2
+Android 5.0.1
+
+按照官网的 Initializing a Build Environment 来配置环境，这里应该是没有什么问题的。很无奈的是下载源码挂 VPN 断断续续的竟然下了近一周">
+<meta property="og:image" content="/image1.png">
+<meta property="og:image" content="/image3.png">
+<meta property="og:image" content="/image2.png">
+<meta property="og:image" content="/image4.png">
+<meta property="og:updated_time" content="2015-06-18T07:55:46.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Build Android 5.0 Source">
+<meta name="twitter:description" content="突然觉的学习 Android 应该去了解下它的源码，虽然内容量很大很大，但是慢慢的去看一下想了解的模块，还是可以的。这将会是一个漫长的过程。
+环境
+OS X Yosemite
+Xcode 6.3.2
+Android 5.0.1
+
+按照官网的 Initializing a Build Environment 来配置环境，这里应该是没有什么问题的。很无奈的是下载源码挂 VPN 断断续续的竟然下了近一周">
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: 'post'
+  };
+</script>
+
+  <title> Build Android 5.0 Source | Light </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?c4edb84f156d669a91e82332bff844a0";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><h1 class="site-meta">
+  <span class="logo-line-before"><i></i></span>
+  <a href="/" class="brand" rel="start">
+      <span class="logo">
+        <i class="icon-next-logo"></i>
+      </span>
+      <span class="site-title">Light</span>
+  </a>
+  <span class="logo-line-after"><i></i></span>
+</h1>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            <i class="menu-item-icon icon-next-home"></i> <br />
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/all-categories" rel="section">
+            <i class="menu-item-icon icon-next-categories"></i> <br />
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            <i class="menu-item-icon icon-next-archives"></i> <br />
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/all-tags" rel="section">
+            <i class="menu-item-icon icon-next-tags"></i> <br />
+            Tags
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content"> 
+
+  <div id="posts" class="posts-expand">
+    
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              Build Android 5.0 Source
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          Posted on
+          <time itemprop="dateCreated" datetime="2015-06-17T18:51:23+08:00" content="2015-06-17">
+            2015-06-17
+          </time>
+        </span>
+
+        
+          <span class="post-category" >
+            &nbsp; | &nbsp; In
+            
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <a href="/categories/Android/" itemprop="url" rel="index">
+                  <span itemprop="name">Android</span>
+                </a>
+              </span>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2015/06/17/Build-Android-5-0-Source/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2015/06/17/Build-Android-5-0-Source/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><p>突然觉的学习 Android 应该去了解下它的源码，虽然内容量很大很大，但是慢慢的去看一下想了解的模块，还是可以的。这将会是一个漫长的过程。</p>
+<h2 id="环境">环境</h2><ul>
+<li>OS X Yosemite</li>
+<li>Xcode 6.3.2</li>
+<li>Android 5.0.1</li>
+</ul>
+<p>按照官网的 <a href="https://source.android.com/source/initializing.html#setting-up-a-mac-os-x-build-environment" target="_blank" rel="external">Initializing a Build Environment</a> 来配置环境，这里应该是没有什么问题的。很无奈的是下载源码挂 VPN 断断续续的竟然下了近一周！这时间真是太长了。</p>
+<h2 id="问题">问题</h2><h3 id="repo:_command_not_found">repo: command not found</h3><p>这个问题出现在你执行 repo sync 的时候。解决方法是在执行之前输入：</p>
+<figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">PATH</span>=~/bin:$<span class="built_in">PATH</span></span><br></pre></td></tr></table></figure>
+<p>再执行 repo sync 就可以继续下载了。</p>
+<h3 id="Unable_to_find_any_JVMs_matching_version_“1-7”-">Unable to find any JVMs matching version “1.7”.</h3><p>这个问题是出现在 lunch 的时候。错误告诉你没有 1.7 的 jvm。其实我这里已经有个 8 的 jdk，所以配置环境的时候直接是跳过了配置 Java 这一步。</p>
+<p>再回去看发现 5.0 以上的是要求使用 Java 7 的。Mac 的话使用 <a href="https://www.oracle.com/technetwork/java/javase/downloads/java-archive-downloads-javase7-521261.html#jdk-7u71-oth-JPR" target="_blank" rel="external">jdk-7u71-macosx-x64.dmg</a>。下载一个 JDK 7 就可以了。</p>
+<h3 id="case-sensitive_filesystem">case-sensitive filesystem</h3><p>在 lunch 的时候还出现了这个错误：</p>
+<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">You are building <span class="command"><span class="keyword">on</span> <span class="title">a</span> <span class="title">case-insensitive</span> <span class="title">filesystem</span>.</span></span><br><span class="line">Please move your source tree <span class="built_in">to</span> <span class="operator">a</span> <span class="keyword">case</span>-sensitive filesystem</span><br></pre></td></tr></table></figure>
+<p>在 Mac 的话，需要创建一个大小写敏感的分区，操作相当于 U 盘。这个之前我已经创建了，出现这个错误是因为运行的位置不对。<strong>应该把下载的源码放到这个分区里面运行才是对的</strong>。</p>
+<figure class="highlight oxygene"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># hdiutil <span class="keyword">create</span> -<span class="keyword">type</span> SPARSE -fs <span class="string">'Case-sensitive Journaled HFS+'</span> -size <span class="number">40</span>g ~/android.dmg</span><br></pre></td></tr></table></figure>
+<p>官网提供创建的分区大小是 40g，到后面发现在 make 生成 system.img 的时候大小是不够的。我设置成了 100g。</p>
+<p>官网配置 <code>function mountAndroid</code> 这个是方便启动这个分区。配置完之后直接在终端输入 mountAndroid 就可以将这个分区启动。</p>
+<p>之后才发现下载源码的时候直接下载在这个分区就行了。</p>
+<h3 id="fatal_error:_‘string’_file_not_found">fatal error: ‘string’ file not found</h3><p>开始使用的时候，使用的 Xcode 6.1.1，报的错是：</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fatal <span class="keyword">error</span>: 'cstring' <span class="type">file</span> <span class="keyword">not</span> found</span><br></pre></td></tr></table></figure>
+<p>然后新装了 6.3.2 就报了错如标题，应该是差不多的问题。</p>
+<p>解决方法：</p>
+<ul>
+<li><p>下载 XCode5.1.1（apple 官网）</p>
+</li>
+<li><p>创建 /Developer/SDK 目录</p>
+  <figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo mkdir -<span class="tag">p</span> /Developer/SDK</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>复制 MacOSX10.8.sdk 到 /Developer/SDK</p>
+<p><img src="image1.png" alt=""></p>
+<p>路径 Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/。</p>
+</li>
+<li><p>复制 Xcode.app 到 /Developer</p>
+<p>在打开的 Xcode5.1.1.dmg 分区搜索，复制完之后这个 5.1.1 的就可以不要了。</p>
+</li>
+<li><p>打开 Xcode 6，Preferences 中修改 Command Line Tools</p>
+<p><img src="image3.png" alt=""></p>
+</li>
+</ul>
+<p>这个解决方案出自这里 <a href="https://medium.com/@raminmahmoodi/build-android-5-0-lollipop-on-osx-10-10-yosemite-441bd00ee77a" target="_blank" rel="external">Build Android 5.0 Lollipop on OSX 10.10 Yosemite</a> 。</p>
+<h3 id="linux/netfilter/xt_DSCP-h:_No_such_file_or_directory">linux/netfilter/xt_DSCP.h: No such file or directory</h3><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">cd</span> external/iptables/extensions/../<span class="keyword">include</span>/linux/netfilter</span><br><span class="line">ln -s xt_dscp.<span class="keyword">h</span> xt_DSCP.<span class="literal">h</span></span><br></pre></td></tr></table></figure>
+<p>这样运行之后就可以解决。</p>
+<p>大概就出现这几个错误，<code>make -j4</code> 这个命令之后经历了一个多小时的编译终于完成。</p>
+<p><img src="image2.png" alt=""></p>
+<h3 id="Android_Studio_查看源码">Android Studio 查看源码</h3><ul>
+<li><p>产生 ide 的环境，进入根目录执行：</p>
+  <figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mmm development<span class="regexp">/tools/idegen/</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<ul>
+<li><p>成功之后执行：</p>
+ <figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sh .<span class="regexp">/development/</span>tools<span class="regexp">/idegen/i</span>degen.sh</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<ul>
+<li>最后用 Android studio 打开根目录（选择现有的项目）</li>
+</ul>
+<p><img src="image4.png" alt=""></p>
+</span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Android-源码/" rel="tag">#Android 源码</a>
+          
+            <a href="/tags/Lollipop-Source/" rel="tag">#Lollipop Source</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/07/15/My-List/" rel="prev">My List</a>
+            
+          </div>
+
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/06/03/Use-Material-Design/" rel="next">Use Material Design</a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+ </div>
+
+        
+
+        
+          <div class="comments" id="comments">
+            
+              <div class="ds-thread" data-thread-key="2015/06/17/Build-Android-5-0-Source/"
+                   data-title="Build Android 5.0 Source" data-url="/2015/06/17/Build-Android-5-0-Source/">
+              </div>
+            
+          </div>
+        
+      </div>
+
+      
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table Of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="/images/pic.jpg" alt="Light" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">Light</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description">Someday you may become the one you want to be.</p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">24</span>
+              <span class="site-state-item-name">posts</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/all-categories">
+              <span class="site-state-item-count">5</span>
+              <span class="site-state-item-name">categories</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/all-tags">
+              <span class="site-state-item-count">39</span>
+              <span class="site-state-item-name">tags</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="menu-item-icon icon-next-feed"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/lightlz" target="_blank">GitHub</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto://light.lz1993@gmail.com" target="_blank">Email</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator"></div>
+          <div class="post-toc">
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#环境"><span class="nav-number">1.</span> <span class="nav-text">环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#问题"><span class="nav-number">2.</span> <span class="nav-text">问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#repo:_command_not_found"><span class="nav-number">2.1.</span> <span class="nav-text">repo: command not found</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Unable_to_find_any_JVMs_matching_version_“1-7”-"><span class="nav-number">2.2.</span> <span class="nav-text">Unable to find any JVMs matching version “1.7”.</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#case-sensitive_filesystem"><span class="nav-number">2.3.</span> <span class="nav-text">case-sensitive filesystem</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#fatal_error:_‘string’_file_not_found"><span class="nav-number">2.4.</span> <span class="nav-text">fatal error: ‘string’ file not found</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#linux/netfilter/xt_DSCP-h:_No_such_file_or_directory"><span class="nav-number">2.5.</span> <span class="nav-text">linux/netfilter/xt_DSCP.h: No such file or directory</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Android_Studio_查看源码"><span class="nav-number">2.6.</span> <span class="nav-text">Android Studio 查看源码</span></a></li></ol></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator"></div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner"> <div class="copyright" >
+  
+  &copy; &nbsp; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Light</span>
+</div>
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="http://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+ </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+    
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"llzz"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+    
+     
+  	<script src="/js/ua-parser.min.js"></script>
+  	<script src="/js/hook-duoshuo.js"></script>
+  
+
+    
+  
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.1"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.1"></script>
+  
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.1" id="motion.global"></script>
+
+
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.1"></script>
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.1" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 0.4 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
+      }
+    }
+  });
+</script>
+
+
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+    });
+  </script>
+
+  
+
+  
+  
+
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"slide":{"type":"slide","bdImg":"3","bdPos":"left","bdTop":"250"}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+
+
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
+</body>
+</html>

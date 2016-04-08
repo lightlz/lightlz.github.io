@@ -1,0 +1,718 @@
+<!doctype html>
+<html class="theme-next use-motion theme-next-mist">
+<head>
+  
+
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+  <link href='//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+
+
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.1"/>
+
+
+    <meta name="description" content="Someday you may become the one you want to be." />
+
+
+
+  <meta name="keywords" content="Android,Material Design," />
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Light" type="application/atom+xml" />
+
+
+
+  <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.1" />
+
+
+<meta name="description" content="Material Design 是我很喜欢的设计风格，简约至上。去年 Google IO 推出之后，就已经了解了。但是一直没有怎么看 Android L 的 API。趁 Android M 推出这段时间，就试着去使用了下 Android 5.0。
+Material Design 中文版 刚出来的时候，参与翻译了其中一章，算是国内最早的中文版吧。
+看了 Android Training 里面的 Cr">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Use Material Design">
+<meta property="og:url" content="/2015/06/03/Use-Material-Design/index.html">
+<meta property="og:site_name" content="Light">
+<meta property="og:description" content="Material Design 是我很喜欢的设计风格，简约至上。去年 Google IO 推出之后，就已经了解了。但是一直没有怎么看 Android L 的 API。趁 Android M 推出这段时间，就试着去使用了下 Android 5.0。
+Material Design 中文版 刚出来的时候，参与翻译了其中一章，算是国内最早的中文版吧。
+看了 Android Training 里面的 Cr">
+<meta property="og:image" content="/material1.png">
+<meta property="og:image" content="/material3.png">
+<meta property="og:image" content="/material2.png">
+<meta property="og:updated_time" content="2015-06-04T08:24:32.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Use Material Design">
+<meta name="twitter:description" content="Material Design 是我很喜欢的设计风格，简约至上。去年 Google IO 推出之后，就已经了解了。但是一直没有怎么看 Android L 的 API。趁 Android M 推出这段时间，就试着去使用了下 Android 5.0。
+Material Design 中文版 刚出来的时候，参与翻译了其中一章，算是国内最早的中文版吧。
+看了 Android Training 里面的 Cr">
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: 'post'
+  };
+</script>
+
+  <title> Use Material Design | Light </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?c4edb84f156d669a91e82332bff844a0";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><h1 class="site-meta">
+  <span class="logo-line-before"><i></i></span>
+  <a href="/" class="brand" rel="start">
+      <span class="logo">
+        <i class="icon-next-logo"></i>
+      </span>
+      <span class="site-title">Light</span>
+  </a>
+  <span class="logo-line-after"><i></i></span>
+</h1>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            <i class="menu-item-icon icon-next-home"></i> <br />
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/all-categories" rel="section">
+            <i class="menu-item-icon icon-next-categories"></i> <br />
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            <i class="menu-item-icon icon-next-archives"></i> <br />
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/all-tags" rel="section">
+            <i class="menu-item-icon icon-next-tags"></i> <br />
+            Tags
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content"> 
+
+  <div id="posts" class="posts-expand">
+    
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              Use Material Design
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          Posted on
+          <time itemprop="dateCreated" datetime="2015-06-03T21:17:22+08:00" content="2015-06-03">
+            2015-06-03
+          </time>
+        </span>
+
+        
+          <span class="post-category" >
+            &nbsp; | &nbsp; In
+            
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <a href="/categories/Android/" itemprop="url" rel="index">
+                  <span itemprop="name">Android</span>
+                </a>
+              </span>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2015/06/03/Use-Material-Design/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2015/06/03/Use-Material-Design/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><p>Material Design 是我很喜欢的设计风格，简约至上。去年 Google IO 推出之后，就已经了解了。但是一直没有怎么看 Android L 的 API。趁 Android M 推出这段时间，就试着去使用了下 Android 5.0。</p>
+<p><a href="http://design.1sters.com" target="_blank" rel="external">Material Design 中文版</a> 刚出来的时候，参与翻译了其中一章，算是国内最早的中文版吧。</p>
+<p>看了 Android Training 里面的 Create App With Material Design，就写了一个简单的 Demo，不完整，但也涉及到了大部分常用的内容。</p>
+<h3 id="Overview">Overview</h3><ul>
+<li><strong>Material Theme</strong></li>
+<li><strong>Activity Transition</strong></li>
+<li><strong>RecyclerView &amp; CardView</strong></li>
+<li><strong>Palette</strong></li>
+<li><strong>Ripple</strong></li>
+</ul>
+<h3 id="Screenshot">Screenshot</h3><p><img src="material1.png" alt=""></p>
+<p><img src="material3.png" alt=""></p>
+<p><img src="material2.png" alt=""></p>
+<h3 id="Material_Theme">Material Theme</h3><p>Material 的主题其实和 Holo 的类型差不多，有这样的：</p>
+<p><code>android:Theme.Material.Light</code><br><code>android:Theme.Material.Light.DarkActionBar</code><br><code>android:Theme.Material</code></p>
+<p>除了这个，还可以在 Theme 里面重写一些属性来定义状态栏、标题栏和一些控件的颜色。</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;resources&gt;</span><br><span class="line">  &lt;!<span class="comment">-- inherit from the material theme --&gt;</span></span><br><span class="line">  &lt;style <span class="property">name</span>=<span class="string">"AppTheme"</span> parent=<span class="string">"android:Theme.Material"</span>&gt;</span><br><span class="line">    &lt;!<span class="comment">-- Main theme colors --&gt;</span></span><br><span class="line">    &lt;!<span class="comment">--   your app branding color for the app bar --&gt;</span></span><br><span class="line">    &lt;<span class="property">item</span> <span class="property">name</span>=<span class="string">"android:colorPrimary"</span>&gt;@color/primary&lt;/<span class="property">item</span>&gt;</span><br><span class="line">    &lt;!<span class="comment">--   darker variant for the status bar and contextual app bars --&gt;</span></span><br><span class="line">    &lt;<span class="property">item</span> <span class="property">name</span>=<span class="string">"android:colorPrimaryDark"</span>&gt;@color/primary_dark&lt;/<span class="property">item</span>&gt;</span><br><span class="line">    &lt;!<span class="comment">--   theme UI controls like checkboxes and text fields --&gt;</span></span><br><span class="line">    &lt;<span class="property">item</span> <span class="property">name</span>=<span class="string">"android:colorAccent"</span>&gt;@color/accent&lt;/<span class="property">item</span>&gt;</span><br><span class="line">  &lt;/style&gt;</span><br><span class="line">&lt;/resources&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="Activity_Transition">Activity Transition</h3><p>这里的 Translation 是 Shared Element。在主页（图1）的 GridView 点击 item 之后，图片和文字将会有放大的效果，直接连接下一个 Activity 里面的图片和文字。在详情页面（图2）点击返回之后，图片和文字又回缩回主页中。</p>
+<p>实现这个效果需要 Android 5.0 以上的版本。</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Intent intent = <span class="keyword">new</span> Intent(MainActivity.<span class="keyword">this</span>,DetialActivity.<span class="keyword">class</span>);</span><br><span class="line">intent.putExtra(DetialActivity.COLOR_INDEX,position);</span><br><span class="line"></span><br><span class="line">ActivityOptionsCompat activityOptions = ActivityOptionsCompat.makeSceneTransitionAnimation(MainActivity.<span class="keyword">this</span>,</span><br><span class="line">                        </span><br><span class="line"><span class="keyword">new</span> Pair&lt;View, <span class="built_in">String</span>&gt;(view.findViewById(R.id.imageview_item),DetialActivity.DETIAL_IMAGE),</span><br><span class="line"><span class="keyword">new</span> Pair&lt;View, <span class="built_in">String</span>&gt;(view.findViewById(R.id.textview_name),DetialActivity.DETIAL_NAME));</span><br><span class="line"></span><br><span class="line"><span class="comment">// Now we can start the Activity, providing the activity options as a bundle</span></span><br><span class="line">ActivityCompat.startActivity(MainActivity.<span class="keyword">this</span>, intent, activityOptions.toBundle());</span><br></pre></td></tr></table></figure>
+<p>主要用的是<code>makeSceneTransitionAnimation</code>这个方法，在 Pair 这个参数中是可以关联很多个数据的，这里之后图片和文字。</p>
+<p>很重要的，要为每一个关联的 View 设定一个<code>TransitionName</code>，这里是<code>DETIAL_IMAGE</code>和<code>DETIAL_NAME</code>。</p>
+<p>同样，在另外一个 Activity 里面需要为关联的 View 设置这个 Transition Name。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">ViewCompat</span><span class="class">.setTransitionName</span>(<span class="tag">mHeaderImageView</span>, <span class="tag">DETIAL_IMAGE</span>);</span><br><span class="line"><span class="tag">ViewCompat</span><span class="class">.setTransitionName</span>(<span class="tag">mHeaderTitle</span>, <span class="tag">DETIAL_NAME</span>);</span><br></pre></td></tr></table></figure>
+<p>然后再让 View 显示就可以了。其实这里可以自定义各种<code>activityOptions</code>，来定义 Activity Transition 动画。</p>
+<h3 id="RecyclerView_&amp;_CardView">RecyclerView &amp; CardView</h3><p>RecyclerView 就不再做介绍了，这里是和 CardView 一起使用的。在详情页（图2）下方的显示的就是。先来看 CardView。</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;android<span class="class">.support</span><span class="class">.v7</span><span class="class">.widget</span><span class="class">.CardView</span></span><br><span class="line">   xmlns:card_view=<span class="string">"http://schemas.android.com/apk/res-auto"</span></span><br><span class="line">   android:layout_width=<span class="string">"match_parent"</span></span><br><span class="line">   android:layout_height=<span class="string">"match_parent"</span></span><br><span class="line">   android:layout_margin=<span class="string">"4dp"</span></span><br><span class="line">   card_view:cardCornerRadius=<span class="string">"4dp"</span>&gt;</span><br><span class="line">&lt;/android<span class="class">.support</span><span class="class">.v7</span><span class="class">.widget</span><span class="class">.CardView</span>&gt;</span><br></pre></td></tr></table></figure>
+<p>CardView 还有很多属性，比如阴影。这里只用了<code>cardCornerRadius</code>来设置圆角。然后把需要显示的布局嵌套在 CardView 里面就行。</p>
+<p>RecyclerView 相对 ListView 来说，比较大的一个变化就是多了一个<code>LayoutManager</code>。</p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">layoutManager = <span class="keyword">new</span> FullyLinearLayoutManager(<span class="keyword">this</span>);</span><br><span class="line">recyclerView.setLayoutManager(layoutManager);</span><br></pre></td></tr></table></figure>
+<p>这里的<code>FullyLinearLayoutManager</code>是继承的 LinearLayoutManager，因为 RecyclerView 和 ScrollView 有冲突。</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">public static <span class="class"><span class="keyword">class</span> <span class="title">ViewHolder</span> <span class="keyword"><span class="keyword">extends</span></span> <span class="title">RecyclerView</span>.<span class="title">ViewHolder</span> &#123;</span></span><br><span class="line"></span><br><span class="line">   <span class="keyword">private</span> <span class="type">TextView</span> tvColorName;</span><br><span class="line">   <span class="keyword">private</span> <span class="type">ImageView</span> imgColor;</span><br><span class="line"></span><br><span class="line">   public <span class="type">ViewHolder</span>(<span class="type">View</span> itemView) &#123;</span><br><span class="line">       <span class="keyword">super</span>(itemView);</span><br><span class="line"></span><br><span class="line">       tvColorName = (<span class="type">TextView</span>)itemView.findViewById(<span class="type">R</span>.id.item_tv);</span><br><span class="line">       imgColor = (<span class="type">ImageView</span>)itemView.findViewById(<span class="type">R</span>.id.item_img);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这个是 RecyclerView 的 ViewHolder，和 ListView 里面差不多。</p>
+<p>继承<code>RecyclerView.Adapter</code>需要重写3个方法。</p>
+<figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="annotation">@Override</span></span><br><span class="line"><span class="keyword">public</span> <span class="function">ViewHolder <span class="title">onCreateViewHolder</span><span class="params">(ViewGroup parent, <span class="keyword">int</span> viewType)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">return</span> <span class="keyword">new</span> ViewHolder(layoutInflater.from(context).inflate(R.layout.recycler_item,parent,<span class="keyword">false</span>));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="annotation">@Override</span></span><br><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">void</span> <span class="title">onBindViewHolder</span><span class="params">(ViewHolder holder, <span class="keyword">int</span> position)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">final</span> <span class="keyword">int</span> index = position;</span><br><span class="line"></span><br><span class="line">   holder.tvColorName.setText(dataSet.get(position).getColorName());</span><br><span class="line">   holder.imgColor.setBackgroundColor(dataSet.get(position).getColorRes());</span><br><span class="line"></span><br><span class="line">   holder.tvColorName.setOnClickListener(<span class="keyword">new</span> View.OnClickListener() &#123;</span><br><span class="line">       <span class="annotation">@Override</span></span><br><span class="line">       <span class="keyword">public</span> <span class="function"><span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">           Message msg = <span class="keyword">new</span> Message();</span><br><span class="line">           msg.arg1 = dataSet.get(index).getColorRes();</span><br><span class="line">           msg.what = DetialActivity.CHANGE_COLOR;</span><br><span class="line">           <span class="keyword">handler</span>.sendMessage(msg);</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;);</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="annotation">@Override</span></span><br><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">int</span> <span class="title">getItemCount</span><span class="params">()</span> </span>&#123;</span><br><span class="line">   <span class="function"><span class="keyword">return</span> dataSet.<span class="title">size</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在<code>onCreateViewHolder</code>传入之前写的 ViewHolder，在<code>onBindViewHolder</code>中绑定数据。</p>
+<h3 id="Palette">Palette</h3><p>这个 Palette 是我相当喜欢的，能够获取到图像中的颜色数据。Android 5.0中还有一个<code>Clip Views</code>用来填充图片也不错。</p>
+<p>在 RecyelerView 当中的数据就是用 Palette 获取的。</p>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Palette</span>.generateAsync(bitmap,new <span class="keyword">Palette</span>.PaletteAsyncListener()&#123;</span><br><span class="line"></span><br><span class="line"> @Override</span><br><span class="line"> public void onGenerated(<span class="keyword">Palette</span> <span class="keyword">palette</span>) &#123;</span><br><span class="line"></span><br><span class="line">     <span class="comment">//充满活力</span></span><br><span class="line">     <span class="keyword">Palette</span>.Swatch vibrantSwatch = <span class="keyword">palette</span>.getVibrantSwatch();</span><br><span class="line">     <span class="keyword">Palette</span>.Swatch lightVibrantSwatch = <span class="keyword">palette</span>.getLightVibrantSwatch();</span><br><span class="line">     <span class="keyword">Palette</span>.Swatch paletteDarkVibrantSwatch = <span class="keyword">palette</span>.getDarkVibrantSwatch();</span><br><span class="line"></span><br><span class="line">     <span class="comment">//柔和</span></span><br><span class="line">     <span class="keyword">Palette</span>.Swatch mutedSwatch = <span class="keyword">palette</span>.getMutedSwatch();</span><br><span class="line">     <span class="keyword">Palette</span>.Swatch darkMutedSwatch = <span class="keyword">palette</span>.getDarkMutedSwatch();</span><br><span class="line">     <span class="keyword">Palette</span>.Swatch lightMutedSwatch = <span class="keyword">palette</span>.getLightMutedSwatch();</span><br><span class="line">｝</span><br></pre></td></tr></table></figure>
+<p>一共获取了这几种颜色。是的，获取到的这些颜色是拿来更改状态栏或者标题栏的颜色。当然也可以是别的控件，主要目的是让整个 APP UI 更加统一。</p>
+<figure class="highlight mel"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Window <span class="keyword">window</span> = getWindow();</span><br><span class="line"><span class="keyword">window</span>.setStatusBarColor(<span class="keyword">color</span>);</span><br><span class="line"><span class="keyword">window</span>.setNavigationBarColor(<span class="keyword">color</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="Ripple">Ripple</h3><p>这个 Ripple 涟漪效果也是很不错的，有分为无界和有界的。这里也只是简单使用了下，在 RecyelerView 的 item 中，使用</p>
+<figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="label">android:</span>background=<span class="string">"?android:attr/selectableItemBackground"</span></span><br></pre></td></tr></table></figure>
+<p>更多使用方法可以在官网中查看。</p>
+<p>当然，Android 5.0 不仅仅这些，这里是很小一部分，还有很重要动画，阴影等。Material Design 给我最大的印象就是它的动画效果很不错。</p>
+<p><a href="https://github.com/lightlz/Use-Material-Design" target="_blank" rel="external">源码在这里</a></p>
+</span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Android/" rel="tag">#Android</a>
+          
+            <a href="/tags/Material-Design/" rel="tag">#Material Design</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/06/17/Build-Android-5-0-Source/" rel="prev">Build Android 5.0 Source</a>
+            
+          </div>
+
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/05/31/Hexo-搭建博客/" rel="next">Hexo 搭建博客</a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+ </div>
+
+        
+
+        
+          <div class="comments" id="comments">
+            
+              <div class="ds-thread" data-thread-key="2015/06/03/Use-Material-Design/"
+                   data-title="Use Material Design" data-url="/2015/06/03/Use-Material-Design/">
+              </div>
+            
+          </div>
+        
+      </div>
+
+      
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table Of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="/images/pic.jpg" alt="Light" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">Light</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description">Someday you may become the one you want to be.</p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">24</span>
+              <span class="site-state-item-name">posts</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/all-categories">
+              <span class="site-state-item-count">5</span>
+              <span class="site-state-item-name">categories</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/all-tags">
+              <span class="site-state-item-count">39</span>
+              <span class="site-state-item-name">tags</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="menu-item-icon icon-next-feed"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/lightlz" target="_blank">GitHub</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto://light.lz1993@gmail.com" target="_blank">Email</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator"></div>
+          <div class="post-toc">
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Overview"><span class="nav-number">1.</span> <span class="nav-text">Overview</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Screenshot"><span class="nav-number">2.</span> <span class="nav-text">Screenshot</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Material_Theme"><span class="nav-number">3.</span> <span class="nav-text">Material Theme</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Activity_Transition"><span class="nav-number">4.</span> <span class="nav-text">Activity Transition</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RecyclerView_&_CardView"><span class="nav-number">5.</span> <span class="nav-text">RecyclerView & CardView</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Palette"><span class="nav-number">6.</span> <span class="nav-text">Palette</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Ripple"><span class="nav-number">7.</span> <span class="nav-text">Ripple</span></a></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator"></div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner"> <div class="copyright" >
+  
+  &copy; &nbsp; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Light</span>
+</div>
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="http://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+ </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+    
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"llzz"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+    
+     
+  	<script src="/js/ua-parser.min.js"></script>
+  	<script src="/js/hook-duoshuo.js"></script>
+  
+
+    
+  
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.1"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.1"></script>
+  
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.1" id="motion.global"></script>
+
+
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.1"></script>
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.1" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 0.4 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
+      }
+    }
+  });
+</script>
+
+
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+    });
+  </script>
+
+  
+
+  
+  
+
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"slide":{"type":"slide","bdImg":"3","bdPos":"left","bdTop":"250"}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+
+
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
+</body>
+</html>

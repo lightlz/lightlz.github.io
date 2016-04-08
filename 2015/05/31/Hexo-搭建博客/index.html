@@ -1,0 +1,735 @@
+<!doctype html>
+<html class="theme-next use-motion theme-next-mist">
+<head>
+  
+
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+  <link href='//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+
+
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.1"/>
+
+
+    <meta name="description" content="Someday you may become the one you want to be." />
+
+
+
+  <meta name="keywords" content="Hexo,Hexo 部署," />
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Light" type="application/atom+xml" />
+
+
+
+  <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.1" />
+
+
+<meta name="description" content="总感觉 Wrodpress 太厚重了，刚好朋友推荐Hexo不错，于是就把博客迁徙了过来，折腾了一些时间，也遇到了一些问题。
+Hexo 安装Hexo 安装前需要电脑里面有安装 Git 和 Node.js。详细的安装方法可以查看 官方文档。
+在安装的时候，我是直接从 Node.js 官网里面下载的包，这样装之后再执行：
+1npm install -g hexo-cli
+发现无法安装，报了错：
+1234">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo 搭建博客">
+<meta property="og:url" content="/2015/05/31/Hexo-搭建博客/index.html">
+<meta property="og:site_name" content="Light">
+<meta property="og:description" content="总感觉 Wrodpress 太厚重了，刚好朋友推荐Hexo不错，于是就把博客迁徙了过来，折腾了一些时间，也遇到了一些问题。
+Hexo 安装Hexo 安装前需要电脑里面有安装 Git 和 Node.js。详细的安装方法可以查看 官方文档。
+在安装的时候，我是直接从 Node.js 官网里面下载的包，这样装之后再执行：
+1npm install -g hexo-cli
+发现无法安装，报了错：
+1234">
+<meta property="og:updated_time" content="2015-06-01T01:50:48.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Hexo 搭建博客">
+<meta name="twitter:description" content="总感觉 Wrodpress 太厚重了，刚好朋友推荐Hexo不错，于是就把博客迁徙了过来，折腾了一些时间，也遇到了一些问题。
+Hexo 安装Hexo 安装前需要电脑里面有安装 Git 和 Node.js。详细的安装方法可以查看 官方文档。
+在安装的时候，我是直接从 Node.js 官网里面下载的包，这样装之后再执行：
+1npm install -g hexo-cli
+发现无法安装，报了错：
+1234">
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: 'post'
+  };
+</script>
+
+  <title> Hexo 搭建博客 | Light </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?c4edb84f156d669a91e82332bff844a0";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><h1 class="site-meta">
+  <span class="logo-line-before"><i></i></span>
+  <a href="/" class="brand" rel="start">
+      <span class="logo">
+        <i class="icon-next-logo"></i>
+      </span>
+      <span class="site-title">Light</span>
+  </a>
+  <span class="logo-line-after"><i></i></span>
+</h1>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            <i class="menu-item-icon icon-next-home"></i> <br />
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/all-categories" rel="section">
+            <i class="menu-item-icon icon-next-categories"></i> <br />
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            <i class="menu-item-icon icon-next-archives"></i> <br />
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/all-tags" rel="section">
+            <i class="menu-item-icon icon-next-tags"></i> <br />
+            Tags
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content"> 
+
+  <div id="posts" class="posts-expand">
+    
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              Hexo 搭建博客
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          Posted on
+          <time itemprop="dateCreated" datetime="2015-05-31T10:42:31+08:00" content="2015-05-31">
+            2015-05-31
+          </time>
+        </span>
+
+        
+          <span class="post-category" >
+            &nbsp; | &nbsp; In
+            
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <a href="/categories/Hexo/" itemprop="url" rel="index">
+                  <span itemprop="name">Hexo</span>
+                </a>
+              </span>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2015/05/31/Hexo-搭建博客/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2015/05/31/Hexo-搭建博客/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><p>总感觉 Wrodpress 太厚重了，刚好朋友推荐<code>Hexo</code>不错，于是就把博客迁徙了过来，折腾了一些时间，也遇到了一些问题。</p>
+<h3 id="Hexo_安装">Hexo 安装</h3><p>Hexo 安装前需要电脑里面有安装 Git 和 Node.js。详细的安装方法可以查看 <a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="external">官方文档</a>。</p>
+<p>在安装的时候，我是直接从 Node.js 官网里面下载的包，这样装之后再执行：</p>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -<span class="keyword">g</span> hexo-<span class="keyword">cli</span></span><br></pre></td></tr></table></figure>
+<p>发现无法安装，报了错：</p>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">npm <span class="keyword">ERR</span>! Darwin 14.0.0</span><br><span class="line">npm <span class="keyword">ERR</span>! argv <span class="string">"node"</span> <span class="string">"/usr/local/bin/npm"</span> <span class="string">"install"</span> <span class="string">"-g"</span> <span class="string">"hexo"</span></span><br><span class="line">npm <span class="keyword">ERR</span>! node v0.10.33</span><br><span class="line">npm <span class="keyword">ERR</span>! npm v2.1.7</span><br><span class="line">npm <span class="keyword">ERR</span>! path /usr/<span class="keyword">local</span>/lib/node_modules/hexo/.gitmodules</span><br><span class="line">npm <span class="keyword">ERR</span>! code EACCES</span><br><span class="line">npm <span class="keyword">ERR</span>! errno 3</span><br><span class="line"></span><br><span class="line">npm <span class="keyword">ERR</span>! <span class="keyword">Error</span>: EACCES, unlink '/usr/<span class="keyword">local</span>/lib/node_modules/hexo/.gitmodules'</span><br><span class="line">npm <span class="keyword">ERR</span>! &#123; [<span class="keyword">Error</span>: EACCES, unlink '/usr/<span class="keyword">local</span>/lib/node_modules/hexo/.gitmodules']</span><br><span class="line">npm <span class="keyword">ERR</span>! errno: 3,</span><br><span class="line">npm <span class="keyword">ERR</span>! code: 'EACCES',</span><br><span class="line">npm <span class="keyword">ERR</span>! path: '/usr/<span class="keyword">local</span>/lib/node_modules/hexo/.gitmodules' &#125;</span><br><span class="line">npm <span class="keyword">ERR</span>! </span><br><span class="line">npm <span class="keyword">ERR</span>! Please try running this command again <span class="keyword">as</span> root/Administrator.</span><br><span class="line">npm <span class="keyword">ERR</span>! <span class="keyword">error</span> <span class="keyword">rolling</span> back <span class="keyword">Error</span>: EACCES, unlink '/usr/<span class="keyword">local</span>/lib/node_modules/hexo/.gitmodules'</span><br><span class="line">npm <span class="keyword">ERR</span>! <span class="keyword">error</span> <span class="keyword">rolling</span> back &#123; [<span class="keyword">Error</span>: EACCES, unlink '/usr/<span class="keyword">local</span>/lib/node_modules/hexo/.gitmodules']</span><br><span class="line">npm <span class="keyword">ERR</span>! <span class="keyword">error</span> <span class="keyword">rolling</span> back errno: 3,</span><br><span class="line">npm <span class="keyword">ERR</span>! <span class="keyword">error</span> <span class="keyword">rolling</span> back code: 'EACCES',</span><br><span class="line">npm <span class="keyword">ERR</span>! <span class="keyword">error</span> <span class="keyword">rolling</span> back path: '/usr/<span class="keyword">local</span>/lib/node_modules/hexo/.gitmodules' &#125;</span><br><span class="line"></span><br><span class="line">npm <span class="keyword">ERR</span>! Please <span class="keyword">include</span> the following <span class="keyword">file</span> with any support request:</span><br><span class="line">npm <span class="keyword">ERR</span>! /Users/xiangwenwen/npm-debug.<span class="literal">log</span></span><br></pre></td></tr></table></figure>
+<p>看到好似是没有权限什么的，于是就加了个<code>sudo</code>，但是发现还是报错：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">fsevents@0.2.0 <span class="operator"><span class="keyword">install</span> /usr/<span class="keyword">local</span>/lib/node_modules/hexo/node_modules/chokidar/node_modules/fsevents</span><br><span class="line">node-gyp rebuild</span><br><span class="line"></span><br><span class="line">gyp WARN EACCES <span class="keyword">user</span> <span class="string">"root"</span> does <span class="keyword">not</span> have permission <span class="keyword">to</span> access the dev dir &gt;<span class="string">"/Users/xiangwenwen/.node-gyp/0.10.33"</span></span><br><span class="line"></span><br><span class="line">gyp WARN EACCES attempting <span class="keyword">to</span> reinstall <span class="keyword">using</span> <span class="keyword">temporary</span> dev dir &gt;<span class="string">"/usr/local/lib/node_modules/hexo/node_modules/chokidar/node_modules/fsevents/.node-gyp"</span></span></span><br></pre></td></tr></table></figure>
+<p>最后在 <a href="https://github.com/hexojs/hexo/issues/913" target="_blank" rel="external">Hexo issue</a> 看到了同样的问题，然后我在 xcode 里面装了<code>command Line Tools</code>在安装就可以了。建议使用文档上的方法安装 Node.js，我服务器的 Ubuntu 环境按照文档安装什么问题都没有。</p>
+<h3 id="Hexo_走起">Hexo 走起</h3><h4 id="迁徙">迁徙</h4><p>安装好了 Hexo，可以按照官网的方法发布文章，这个很简单。发布完之后执行<code>hexo server</code>就可以在本地查看了。</p>
+<p>官网也提供了很多类型的迁移方案，我把 wordpress 里面的内容拿下来之后，执行：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo migrate wordpress <span class="tag">&lt;<span class="title">source</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>就很快把内容迁移过来了。</p>
+<h4 id="主题">主题</h4><p>使用主题也很容易，在官网推荐了15款主题。更多可以在 <a href="https://github.com/hexojs/hexo/wiki/Themes" target="_blank" rel="external">这里</a> 查看。</p>
+<h4 id="多说评论">多说评论</h4><p>因为官方默认的是使用 Disqus，对国内用户不是很好。于是把这个换成了多说。去 <a href="http://duoshuo.com" target="_blank" rel="external">多说</a> 官网注册个账号，会获取到<code>xxx.duoshuo.com</code>这样的域名。</p>
+<p>然后找到主题里面的文章的那个代码区域，将 Disqus 替换掉。可参考 <a href="http://dev.duoshuo.com/threads/541d3b2b40b5abcd2e4df0e9" target="_blank" rel="external">这里</a>。</p>
+<p>这样完成之后基本的博客就算完成了，还剩最后一步最麻烦的：部署。</p>
+<h3 id="Hexo_VPS_部署">Hexo VPS 部署</h3><p>当然，如果你选择部署在 GitHub 上，那么就不麻烦，很容易，可以参考官方文档。我个人不太建议这样，GitHub 的访问速度太容易抽筋，还有就是应该给予它更重要的用途。</p>
+<h4 id="Linode">Linode</h4><p>选择了<code>Linode</code>，SSD 的访问速度还是不错的。买了最低配置的 $10/m，主机位置是在新加坡的，买不到日本的了。</p>
+<p>按照它官网的方式，把系统先装好，我选择了最新的 Ubuntu 系统，然后再 boot，将服务开启（Running）。之后再按照之前的步骤把 Git &amp; Node.js &amp; Hexo 安装好。</p>
+<h4 id="Nginx">Nginx</h4><p>Nginx 是一个高性能的 HTTP 和反向代理服务器。</p>
+<p><strong>安装（Ubuntu 环境）</strong></p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$sudo apt-<span class="keyword">get</span> install nginx</span><br></pre></td></tr></table></figure>
+<p><strong>在 Nginx 中新建虚拟主机</strong></p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">touch <span class="regexp">/etc/</span>nginx<span class="regexp">/sites-available/</span>blog</span><br><span class="line">vi <span class="regexp">/etc/</span>nginx<span class="regexp">/sites-available/</span>blog</span><br></pre></td></tr></table></figure>
+<p>然后使用一下配置：</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">server</span> &#123;                </span><br><span class="line">	  <span class="title">listen</span> <span class="number">80</span> ;                                                                                                                                                                                              </span><br><span class="line">      <span class="title">root</span> /var/www/blog;                                                        </span><br><span class="line">	  <span class="title">server_name</span> llzz.me;                                                 </span><br><span class="line">	  <span class="title">access_log</span>  /var/log/nginx/blog_access.log;                                    </span><br><span class="line">	  <span class="title">error_log</span>   /var/log/nginx/blog_error.log;  </span><br><span class="line">	                                            </span><br><span class="line">	  <span class="title">location</span> <span class="regexp">~* ^.+\.(ico|gif|jpg|jpeg|png)$</span> &#123;                            </span><br><span class="line">		      <span class="title">root</span> /var/www/blog;                                    </span><br><span class="line">		      <span class="title">access_log</span>   <span class="built_in">off</span>;                 </span><br><span class="line">		      <span class="title">expires</span>      <span class="number">1d</span>;                            </span><br><span class="line">	  &#125;                                                                              </span><br><span class="line">	  <span class="title">location</span> <span class="regexp">~* ^.+\.(css|js|txt|xml|swf|wav)$</span> &#123;                                   </span><br><span class="line">		      <span class="title">root</span> /var/www/blog;                                                        </span><br><span class="line">		      <span class="title">access_log</span>   <span class="built_in">off</span>;                                                          </span><br><span class="line">		      <span class="title">expires</span>      <span class="number">10m</span>;                                                          </span><br><span class="line">	  &#125;                                                                              </span><br><span class="line">	  <span class="title">location</span> / &#123;                                                                   </span><br><span class="line">		     <span class="title">root</span> /var/www/blog;                                                </span><br><span class="line">		     <span class="title">if</span> (-f <span class="variable">$request_filename</span>) &#123;                                            </span><br><span class="line">		         <span class="title">rewrite</span><span class="regexp"> ^/(.*)$</span>  /<span class="variable">$1</span> <span class="built_in">break</span>;                                    </span><br><span class="line">		     &#125;                                                                      </span><br><span class="line">      &#125;                 </span><br><span class="line">		                                                                </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>server_name</code>      域名 ，<code>/var/www/blog</code>博客静态文件存放目录。</p>
+<p>最后再执行一下命令。</p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ln <span class="regexp">/etc/</span>nginx<span class="regexp">/sites-available/</span>blog <span class="regexp">/etc/</span>nginx<span class="regexp">/sites-enabled/</span>blog</span><br><span class="line"><span class="regexp">/etc/i</span>nit.d<span class="regexp">/nginx restart</span></span><br></pre></td></tr></table></figure>
+<p>执行完之后，输入你的 IP 地址，是可以看到 Nginx 的成功信息的。</p>
+<h3 id="SSH">SSH</h3><p>和平时使用 GitHub 一样，有一个 SSH 密钥。在本地<code>~/</code>目录下新建一个<code>.shh</code>目录（没有的话）。</p>
+<p><strong>本地新建密钥公钥</strong></p>
+<figure class="highlight mathematica"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -<span class="keyword">C</span> <span class="string">"blog"</span></span><br></pre></td></tr></table></figure>
+<p>可以直接全部回车，然后生成的有 <code>id_rsa.pub</code>，打开复制内容。</p>
+<p><strong>服务端配置</strong></p>
+<p>新建一个 git 用户（root）</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adduser git <span class="comment">--ingroup sudo</span></span><br></pre></td></tr></table></figure>
+<p>git 用户下，粘贴刚才生成的 SSH 密钥</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">cd ~</span><br><span class="line">mkdir <span class="class">.ssh</span></span><br><span class="line">cd <span class="class">.ssh</span></span><br><span class="line">touch authorized_keys</span><br><span class="line">vi authorized_keys</span><br></pre></td></tr></table></figure>
+<p>之后再终端输入<code>ssh git@llzz.me</code>，如果没什么问题，就可以通过 SSH 访问 git了。</p>
+<p><strong>创建博客静态文件的仓库</strong></p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cd ~</span><br><span class="line">mkdir blog<span class="class">.git</span></span><br><span class="line">cd blog<span class="class">.git</span></span><br><span class="line">git init --bare</span><br></pre></td></tr></table></figure>
+<p><strong>在本地配置 Hexo 的 deploy</strong></p>
+<p>设置 git 用户名</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global user<span class="class">.email</span> <span class="string">"email@example.com"</span></span><br><span class="line">git config --global user<span class="class">.name</span> <span class="string">"username</span></span><br></pre></td></tr></table></figure>
+<p>修改 Hexo 配置文件里面的 deploy</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">deploy</span>:  </span><br><span class="line"><span class="attribute">type</span>: git  </span><br><span class="line"><span class="attribute">message</span>: update  </span><br><span class="line"><span class="attribute">repo</span>: git<span class="variable">@llzz</span>.<span class="attribute">me</span>:blog.git  </span><br><span class="line"><span class="attribute">branch</span>: master</span><br></pre></td></tr></table></figure>
+<p>执行<code>hexo g</code>和    <code>hexo d</code>，没什么问题的话，静态文件会 push 到 git 仓库里面。（需要 clone 出来）</p>
+<h4 id="Git_hooks">Git hooks</h4><p>每次 push 之后，博客静态文件将会在仓库里面，但是我们访问链接到的并不是 git 目录。所以每次 git 收到 push 消息之后，需要将内容拷贝到<code>/var/www/blog</code>目录下。</p>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">cd</span> ~/blog.git/hooks</span><br><span class="line">touch <span class="keyword">post</span>-receive</span><br><span class="line">vi <span class="keyword">post</span>-receive</span><br></pre></td></tr></table></figure>
+<p>使用下面的脚本，内容将会自动拷贝到指定的目录。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/bin/bash -l</span></span><br><span class="line">GIT_REPO=/home/git/blog.git</span><br><span class="line">TMP_GIT_CLONE=/tmp/blog</span><br><span class="line">PUBLIC_WWW=/var/www/blog</span><br><span class="line">rm -rf <span class="variable">$&#123;TMP_GIT_CLONE&#125;</span></span><br><span class="line">git <span class="built_in">clone</span> <span class="variable">$GIT_REPO</span> <span class="variable">$TMP_GIT_CLONE</span></span><br><span class="line">rm -rf <span class="variable">$&#123;PUBLIC_WWW&#125;</span>/*</span><br><span class="line">cp -rf <span class="variable">$&#123;TMP_GIT_CLONE&#125;</span>/* <span class="variable">$&#123;PUBLIC_WWW&#125;</span></span><br></pre></td></tr></table></figure>
+<p>最后更改脚步的权限和<code>/var/www/blog</code>访问权限。</p>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>chmod +x post-receive</span><br><span class="line"><span class="variable">$ </span>sudo chmod <span class="number">777</span> /var/www/blog</span><br></pre></td></tr></table></figure>
+<h4 id="hexo_g_&amp;&amp;_hexo_d">hexo g &amp;&amp; hexo d</h4><p>博客内容做了更改之后，执行<code>hexo g</code>和<code>hexo d</code>就会把内容更新到你的服务器中。配置完之后更新文章别说有多么方便了。</p>
+<h3 id="参考内容">参考内容</h3><p><a href="http://blog.berry10086.com/Tech/deploy-hexo-to-vps/" target="_blank" rel="external">点这里</a></p>
+</span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Hexo/" rel="tag">#Hexo</a>
+          
+            <a href="/tags/Hexo-部署/" rel="tag">#Hexo 部署</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/06/03/Use-Material-Design/" rel="prev">Use Material Design</a>
+            
+          </div>
+
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/04/28/android-ormlite/" rel="next">Android Ormlite</a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+ </div>
+
+        
+
+        
+          <div class="comments" id="comments">
+            
+              <div class="ds-thread" data-thread-key="2015/05/31/Hexo-搭建博客/"
+                   data-title="Hexo 搭建博客" data-url="/2015/05/31/Hexo-搭建博客/">
+              </div>
+            
+          </div>
+        
+      </div>
+
+      
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table Of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="/images/pic.jpg" alt="Light" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">Light</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description">Someday you may become the one you want to be.</p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">24</span>
+              <span class="site-state-item-name">posts</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/all-categories">
+              <span class="site-state-item-count">5</span>
+              <span class="site-state-item-name">categories</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/all-tags">
+              <span class="site-state-item-count">39</span>
+              <span class="site-state-item-name">tags</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="menu-item-icon icon-next-feed"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/lightlz" target="_blank">GitHub</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto://light.lz1993@gmail.com" target="_blank">Email</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator"></div>
+          <div class="post-toc">
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Hexo_安装"><span class="nav-number">1.</span> <span class="nav-text">Hexo 安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Hexo_走起"><span class="nav-number">2.</span> <span class="nav-text">Hexo 走起</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#迁徙"><span class="nav-number">2.1.</span> <span class="nav-text">迁徙</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#主题"><span class="nav-number">2.2.</span> <span class="nav-text">主题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#多说评论"><span class="nav-number">2.3.</span> <span class="nav-text">多说评论</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Hexo_VPS_部署"><span class="nav-number">3.</span> <span class="nav-text">Hexo VPS 部署</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Linode"><span class="nav-number">3.1.</span> <span class="nav-text">Linode</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Nginx"><span class="nav-number">3.2.</span> <span class="nav-text">Nginx</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SSH"><span class="nav-number">4.</span> <span class="nav-text">SSH</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Git_hooks"><span class="nav-number">4.1.</span> <span class="nav-text">Git hooks</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#hexo_g_&&_hexo_d"><span class="nav-number">4.2.</span> <span class="nav-text">hexo g && hexo d</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考内容"><span class="nav-number">5.</span> <span class="nav-text">参考内容</span></a></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator"></div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner"> <div class="copyright" >
+  
+  &copy; &nbsp; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Light</span>
+</div>
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="http://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+ </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+    
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"llzz"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+    
+     
+  	<script src="/js/ua-parser.min.js"></script>
+  	<script src="/js/hook-duoshuo.js"></script>
+  
+
+    
+  
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.1"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.1"></script>
+  
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.1" id="motion.global"></script>
+
+
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.1"></script>
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.1" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 0.4 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
+      }
+    }
+  });
+</script>
+
+
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+    });
+  </script>
+
+  
+
+  
+  
+
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"slide":{"type":"slide","bdImg":"3","bdPos":"left","bdTop":"250"}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+
+
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
+</body>
+</html>

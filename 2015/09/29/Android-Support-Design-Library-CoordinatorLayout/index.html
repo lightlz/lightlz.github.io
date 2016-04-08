@@ -1,0 +1,751 @@
+<!doctype html>
+<html class="theme-next use-motion theme-next-mist">
+<head>
+  
+
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+  <link href='//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+
+
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.1"/>
+
+
+    <meta name="description" content="Someday you may become the one you want to be." />
+
+
+
+  <meta name="keywords" content="Android Support Design Library,CoordinatorLayout,CoordinatorToolbarLayout," />
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Light" type="application/atom+xml" />
+
+
+
+  <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.1" />
+
+
+<meta name="description" content="概述这是 Android Support Design Library 的最后一篇了，此内容在 Material Design 中算是很重要的，我只能用惊艳一词来形容。主要内容是滚动技巧，通过使用 CoordinatorLayout，实现滚动时的各种动画效果。
+按照 MD 文档中的使用方式，分为三大类：
+
+Standard app bar
+Tabs
+Flexible space
+
+字面上好似不太好">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android Support Design Library - CoordinatorLayout">
+<meta property="og:url" content="/2015/09/29/Android-Support-Design-Library-CoordinatorLayout/index.html">
+<meta property="og:site_name" content="Light">
+<meta property="og:description" content="概述这是 Android Support Design Library 的最后一篇了，此内容在 Material Design 中算是很重要的，我只能用惊艳一词来形容。主要内容是滚动技巧，通过使用 CoordinatorLayout，实现滚动时的各种动画效果。
+按照 MD 文档中的使用方式，分为三大类：
+
+Standard app bar
+Tabs
+Flexible space
+
+字面上好似不太好">
+<meta property="og:image" content="http://7xluln.com1.z0.glb.clouddn.com/android_support_designstandard.gif">
+<meta property="og:image" content="http://7xluln.com1.z0.glb.clouddn.com/android_support_designtabs.gif">
+<meta property="og:image" content="http://7xluln.com1.z0.glb.clouddn.com/android_support_designcoo.gif">
+<meta property="og:image" content="http://7xluln.com1.z0.glb.clouddn.com/android_support_designover.png">
+<meta property="og:updated_time" content="2015-09-30T08:52:47.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android Support Design Library - CoordinatorLayout">
+<meta name="twitter:description" content="概述这是 Android Support Design Library 的最后一篇了，此内容在 Material Design 中算是很重要的，我只能用惊艳一词来形容。主要内容是滚动技巧，通过使用 CoordinatorLayout，实现滚动时的各种动画效果。
+按照 MD 文档中的使用方式，分为三大类：
+
+Standard app bar
+Tabs
+Flexible space
+
+字面上好似不太好">
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: 'post'
+  };
+</script>
+
+  <title> Android Support Design Library - CoordinatorLayout | Light </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?c4edb84f156d669a91e82332bff844a0";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><h1 class="site-meta">
+  <span class="logo-line-before"><i></i></span>
+  <a href="/" class="brand" rel="start">
+      <span class="logo">
+        <i class="icon-next-logo"></i>
+      </span>
+      <span class="site-title">Light</span>
+  </a>
+  <span class="logo-line-after"><i></i></span>
+</h1>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            <i class="menu-item-icon icon-next-home"></i> <br />
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/all-categories" rel="section">
+            <i class="menu-item-icon icon-next-categories"></i> <br />
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            <i class="menu-item-icon icon-next-archives"></i> <br />
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/all-tags" rel="section">
+            <i class="menu-item-icon icon-next-tags"></i> <br />
+            Tags
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content"> 
+
+  <div id="posts" class="posts-expand">
+    
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              Android Support Design Library - CoordinatorLayout
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          Posted on
+          <time itemprop="dateCreated" datetime="2015-09-29T11:08:48+08:00" content="2015-09-29">
+            2015-09-29
+          </time>
+        </span>
+
+        
+
+        
+          
+            <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2015/09/29/Android-Support-Design-Library-CoordinatorLayout/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2015/09/29/Android-Support-Design-Library-CoordinatorLayout/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><h3 id="概述">概述</h3><p>这是 Android Support Design Library 的最后一篇了，此内容在 Material Design 中算是很重要的，我只能用惊艳一词来形容。主要内容是滚动技巧，通过使用 CoordinatorLayout，实现滚动时的各种动画效果。</p>
+<p>按照 MD 文档中的使用方式，分为三大类：</p>
+<ul>
+<li>Standard app bar</li>
+<li>Tabs</li>
+<li>Flexible space</li>
+</ul>
+<p>字面上好似不太好理解，主要说明当滚动的时候，Standard app bar 的效果，有 Tabs 的标题栏的效果。Flexible space 就是滚动的时候在标题栏拉出一块空间，用来显示内容（例如图片）。实现这些效果，都需要使用 CoordinatorLayout，在 <a href="http://llzz.me/2015/09/21/Android-Support-Design-Library-Snackbars/" target="_blank" rel="external">Snackbars 章节</a>也使用过，能够让出空间给 Snackbars 显示。</p>
+<h4 id="Dependencies">Dependencies</h4><p>前提条件得满足。</p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">compile</span> <span class="string">'com.android.support:design:22.2.1'</span></span><br><span class="line"><span class="keyword">compile</span> <span class="string">'com.android.support:appcompat-v7:22.2.1'</span></span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<h3 id="Standard_app_bar_预览">Standard app bar 预览</h3><p><img src="http://7xluln.com1.z0.glb.clouddn.com/android_support_designstandard.gif" alt=""></p>
+<h4 id="布局">布局</h4><p>新建一个布局文件，使用 CoordinatorLayout 作为主要容器。</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&lt;android<span class="class">.support</span><span class="class">.design</span><span class="class">.widget</span><span class="class">.CoordinatorLayout</span> xmlns:android=<span class="string">"http://schemas.android.com/apk/res/android"</span></span><br><span class="line">xmlns:app=<span class="string">"http://schemas.android.com/apk/res-auto"</span>   android:fitsSystemWindows=<span class="string">"true"</span></span><br><span class="line">&gt;</span><br><span class="line">	&lt;android<span class="class">.support</span><span class="class">.design</span><span class="class">.widget</span><span class="class">.AppBarLayout</span></span><br><span class="line">        android:layout_height=<span class="string">"wrap_content"</span></span><br><span class="line">        android:layout_width=<span class="string">"match_parent"</span>&gt;</span><br><span class="line"></span><br><span class="line">   		 &lt;android<span class="class">.support</span><span class="class">.v7</span><span class="class">.widget</span><span class="class">.Toolbar</span></span><br><span class="line">            ...</span><br><span class="line">            app:layout_scrollFlags=<span class="string">"scroll|enterAlways"</span>/&gt;</span><br><span class="line">            </span><br><span class="line">	&lt;/android<span class="class">.support</span><span class="class">.design</span><span class="class">.widget</span><span class="class">.AppBarLayout</span>&gt;</span><br><span class="line">	</span><br><span class="line">	&lt;android<span class="class">.support</span><span class="class">.v4</span><span class="class">.widget</span><span class="class">.NestedScrollView</span></span><br><span class="line">   		app:layout_behavior=<span class="string">"@string/appbar_scrolling_view_behavior"</span>&gt;</span><br><span class="line">   </span><br><span class="line">		&lt;!-- Your scrolling <span class="attribute">content</span> --&gt;</span><br><span class="line"></span><br><span class="line">	&lt;/android<span class="class">.support</span><span class="class">.v4</span><span class="class">.widget</span><span class="class">.NestedScrollView</span>&gt;</span><br><span class="line"></span><br><span class="line">&lt;/android<span class="class">.support</span><span class="class">.design</span><span class="class">.widget</span><span class="class">.CoordinatorLayout</span>&gt;</span><br></pre></td></tr></table></figure>
+<p><code>AppBarLayout</code> 需要在第一层级，里面包括 Toolbar。注意看 <code>layout_scrollFlags</code> 属性。同时设置滚动布局的 behavior 为 <code>@string/appbar_scrolling_view_behavior</code>。这样设置之后，向上滚动后，标题栏将会消失，只要向下滚动，标题栏就会出现。</p>
+<h4 id="layout_scrollFlags">layout_scrollFlags</h4><table>
+<thead>
+<tr>
+<th style="text-align:center">类型</th>
+<th style="text-align:center">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">scroll</td>
+<td style="text-align:center">需要滚出屏幕的 View 都需要设置此标志</td>
+</tr>
+<tr>
+<td style="text-align:center">exitUntilCollapsed</td>
+<td style="text-align:center">滚动推出屏幕到最小高度的时候折叠</td>
+</tr>
+<tr>
+<td style="text-align:center">enterAlways</td>
+<td style="text-align:center">向下滚动的时候，设置此标志的 View 将显示</td>
+</tr>
+<tr>
+<td style="text-align:center">enterAlwaysCollapsed</td>
+<td style="text-align:center">最小高度进入，到达顶部显示完整高度</td>
+</tr>
+</tbody>
+</table>
+<h3 id="Tabs_预览">Tabs 预览</h3><p><img src="http://7xluln.com1.z0.glb.clouddn.com/android_support_designtabs.gif" alt=""></p>
+<h4 id="布局-1">布局</h4><p>布局上和 Standard app bar 类似，只需要在 Toolbar 布局下方增加一个 TabLayout。TabLayout 的使用方式可以参看 <a href="http://llzz.me/2015/09/16/Android-Support-Design-Library-TabLayout/" target="_blank" rel="external">TabLayout 章节</a>。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="tag">android</span><span class="class">.support</span><span class="class">.design</span><span class="class">.widget</span><span class="class">.TabLayout</span></span><br><span class="line">  <span class="rule"><span class="attribute">android</span>:<span class="value">layout_height=<span class="string">"wrap_content"</span></span><br><span class="line">  android:layout_width=<span class="string">"match_parent"</span></span><br><span class="line">/&gt;</span></span></span><br></pre></td></tr></table></figure>
+<p>同时需要在 Viewpager 设置 behavior 为 <code>@string/appbar_scrolling_view_behavior</code>。设置方式和 Standard app bar 上相同。这样设置之后，向上滚动后，标题栏将会消失，Tabs 显示，只要向下滚动，标题栏将会出现。</p>
+<h3 id="Flexible_space_预览">Flexible space 预览</h3><p><img src="http://7xluln.com1.z0.glb.clouddn.com/android_support_designcoo.gif" alt=""></p>
+<p>这个是 Android Support Design Library 里面最惊艳的对吧，像把图片折叠一样。</p>
+<h4 id="布局-2">布局</h4><p>布局上和之前有稍微更改，增加了 CollapsingToolbarLayout。</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line">&lt;android<span class="class">.support</span><span class="class">.design</span><span class="class">.widget</span><span class="class">.CoordinatorLayout</span> xmlns:android=<span class="string">"http://schemas.android.com/apk/res/android"</span></span><br><span class="line">    xmlns:app=<span class="string">"http://schemas.android.com/apk/res-auto"</span></span><br><span class="line">    android:layout_width=<span class="string">"match_parent"</span></span><br><span class="line">    android:layout_height=<span class="string">"match_parent"</span></span><br><span class="line">    android:fitsSystemWindows=<span class="string">"true"</span></span><br><span class="line">    &gt;</span><br><span class="line">    &lt;android<span class="class">.support</span><span class="class">.design</span><span class="class">.widget</span><span class="class">.AppBarLayout</span></span><br><span class="line">        android:layout_width=<span class="string">"match_parent"</span></span><br><span class="line">        android:layout_height=<span class="string">"256dp"</span></span><br><span class="line">        android:fitsSystemWindows=<span class="string">"true"</span></span><br><span class="line">       &gt;</span><br><span class="line">        &lt;android<span class="class">.support</span><span class="class">.design</span><span class="class">.widget</span><span class="class">.CollapsingToolbarLayout</span></span><br><span class="line">            android:layout_width=<span class="string">"match_parent"</span></span><br><span class="line">            android:layout_height=<span class="string">"match_parent"</span></span><br><span class="line">            android:fitsSystemWindows=<span class="string">"true"</span></span><br><span class="line">            app:contentScrim=<span class="string">"?attr/colorPrimary"</span></span><br><span class="line">            app:expandedTitleMarginEnd=<span class="string">"64dp"</span></span><br><span class="line">            app:expandedTitleMarginStart=<span class="string">"48dp"</span></span><br><span class="line">            app:layout_scrollFlags=<span class="string">"scroll|exitUntilCollapsed"</span>&gt;</span><br><span class="line"></span><br><span class="line">            &lt;ImageView              </span><br><span class="line">                android:layout_width=<span class="string">"match_parent"</span></span><br><span class="line">                android:layout_height=<span class="string">"match_parent"</span></span><br><span class="line">                android:scaleType=<span class="string">"centerCrop"</span></span><br><span class="line">                android:fitsSystemWindows=<span class="string">"true"</span></span><br><span class="line">                app:layout_collapseMode=<span class="string">"parallax"</span> /&gt;</span><br><span class="line"></span><br><span class="line">            &lt;android<span class="class">.support</span><span class="class">.v7</span><span class="class">.widget</span><span class="class">.Toolbar</span></span><br><span class="line">                 ...</span><br><span class="line">                app:layout_collapseMode=<span class="string">"pin"</span></span><br><span class="line">                &gt;</span><br><span class="line">            &lt;/android<span class="class">.support</span><span class="class">.v7</span><span class="class">.widget</span><span class="class">.Toolbar</span>&gt;</span><br><span class="line"></span><br><span class="line">        &lt;/android<span class="class">.support</span><span class="class">.design</span><span class="class">.widget</span><span class="class">.CollapsingToolbarLayout</span>&gt;</span><br><span class="line"></span><br><span class="line">    &lt;/android<span class="class">.support</span><span class="class">.design</span><span class="class">.widget</span><span class="class">.AppBarLayout</span>&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &lt;android<span class="class">.support</span><span class="class">.v4</span><span class="class">.widget</span><span class="class">.NestedScrollView</span></span><br><span class="line">        android:layout_width=<span class="string">"match_parent"</span></span><br><span class="line">        android:layout_height=<span class="string">"match_parent"</span></span><br><span class="line">        app:layout_behavior=<span class="string">"@string/appbar_scrolling_view_behavior"</span>&gt;</span><br><span class="line"></span><br><span class="line">			...</span><br><span class="line"></span><br><span class="line">    &lt;/android<span class="class">.support</span><span class="class">.v4</span><span class="class">.widget</span><span class="class">.NestedScrollView</span>&gt;</span><br><span class="line"></span><br><span class="line">    &lt;android<span class="class">.support</span><span class="class">.design</span><span class="class">.widget</span><span class="class">.FloatingActionButton</span></span><br><span class="line">    	... </span><br><span class="line">    /&gt;</span><br><span class="line"></span><br><span class="line">&lt;/android<span class="class">.support</span><span class="class">.design</span><span class="class">.widget</span><span class="class">.CoordinatorLayout</span>&gt;</span><br></pre></td></tr></table></figure>
+<p>这里首先得注意的是 AppBarLayout 的高度，一定要设置成一个固定的值，不然滚动将无效果。之后 <code>layout_scrollFlags</code> 需要设置成 <code>scroll|exitUntilCollapsed</code>。</p>
+<p>同时设置 Toolbar 的视图模式 <code>layout_collapseMode</code> 为 <code>pin</code>，并设置 ImageView 的视图模式为 <code>parallax</code> 折叠视差。</p>
+<p>这时候，如果运行的话，会出现两个问题。</p>
+<ul>
+<li>标题栏 Title 不显示</li>
+<li>状态栏不透明</li>
+</ul>
+<p>针对第一个问题，Toolbar 标题将无效，需要使用 CollapsingToolbarLayout 来设置标题。</p>
+<figure class="highlight openscad"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">CollapsingToolbarLayout collapsingToolbar =</span><br><span class="line">           <span class="params">(CollapsingToolbarLayout)</span> findViewById<span class="params">(R.id.collapsing_toolbar)</span>;</span><br><span class="line">collapsingToolbar.setTitle<span class="params">(<span class="string">"Title"</span>)</span>;</span><br></pre></td></tr></table></figure>
+<p>针对第二个问题需要设置状态栏透明。</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;style <span class="property">name</span>=<span class="string">"AppTheme.transpant"</span> parent=<span class="string">"AppTheme"</span>&gt;</span><br><span class="line">   &lt;<span class="property">item</span> <span class="property">name</span>=<span class="string">"android:windowDrawsSystemBarBackgrounds"</span>&gt;<span class="constant">true</span>&lt;/<span class="property">item</span>&gt;</span><br><span class="line">   &lt;<span class="property">item</span> <span class="property">name</span>=<span class="string">"android:statusBarColor"</span>&gt;@android:color/transparent&lt;/<span class="property">item</span>&gt;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>这里单独给这个 Activity 设置主题，主要是因为状态栏透明和 Standard app bar 等会有冲突，Standard app bar 向上滚动，标题栏消失的时候，Title 将会出现在状态栏上。</p>
+</blockquote>
+<p>如此惊艳的效果就完成了。其实 Material Design 里面还有两个 Flexible space 的效果。</p>
+<p>一个是折叠的标题栏，就是下拉出后出现的不是图片，是放大的标题栏。实现方式就是将上面布局中的 ImageView 删除。效果在此不演示了。</p>
+<p>另外一个是 Flexible space with overlapping content，字面上很好理解，就是覆盖住上方内容。效果如下图（官方）。</p>
+<p><img src="http://7xluln.com1.z0.glb.clouddn.com/android_support_designover.png" alt=""></p>
+<p>这个效果只要更改滚动布局的属性 <code>behavior_overlapTop</code>，其他不变。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="tag">android</span><span class="class">.support</span><span class="class">.v4</span><span class="class">.widget</span><span class="class">.NestedScrollView</span></span><br><span class="line">   <span class="rule"><span class="attribute">app</span>:<span class="value">behavior_overlapTop=<span class="string">"64dp"</span></span><br><span class="line">   app:layout_behavior=<span class="string">"@string/appbar_scrolling_view_behavior"</span>/&gt;</span></span></span><br></pre></td></tr></table></figure>
+<p>当然也可以在代码中更改。</p>
+<figure class="highlight openscad"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">NestedScrollView scrollView = ...</span><br><span class="line">CoordinatorLayout.LayoutParams params = </span><br><span class="line">    <span class="params">(CoordinatorLayout.LayoutParams)</span> scrollView.getLayoutParams<span class="params">()</span>;</span><br><span class="line">AppBarLayout.ScrollingViewBehavior behavior =</span><br><span class="line">    <span class="params">(AppBarLayout.ScrollingViewBehavior)</span> params.getBehavior<span class="params">()</span>;</span><br><span class="line">behavior.setOverlapTop<span class="params">(<span class="number">128</span>)</span>; <span class="comment">// <span class="doctag">Note</span>: in pixels</span></span><br></pre></td></tr></table></figure>
+<p>但是遇到问题，官方中的效果是标题栏上的 Title 会一直固定在顶部，而现在的效果是 Title 还是和之前效果一样滚动的时候会放大到下方，故在此不展示效果图，有兴趣的可以去看代码。</p>
+<h3 id="参考">参考</h3><p><a href="https://guides.codepath.com/android/Handling-Scrolls-with-CoordinatorLayout" target="_blank" rel="external">Handling Scrolls with CoordinatorLayout</a></p>
+<p><a href="http://www.google.com/design/spec/patterns/scrolling-techniques.html#" target="_blank" rel="external">Material Design</a></p>
+<p><a href="http://stackoverflow.com/questions/31039074/overlap-scrolling-view-with-appbarlayout" target="_blank" rel="external">Overlap scrolling view with AppBarLayout</a></p>
+<h3 id="源码">源码</h3><p><a href="https://github.com/lightlz/DesignSupportLib" target="_blank" rel="external">DesignSupportLib</a> </p>
+</span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Android-Support-Design-Library/" rel="tag">#Android Support Design Library</a>
+          
+            <a href="/tags/CoordinatorLayout/" rel="tag">#CoordinatorLayout</a>
+          
+            <a href="/tags/CoordinatorToolbarLayout/" rel="tag">#CoordinatorToolbarLayout</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/10/08/RecyclerView-1/" rel="prev">RecyclerView 1</a>
+            
+          </div>
+
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/09/25/Android-Support-Design-Library-PercentLayout/" rel="next">Android Support Design Library - PercentLayout</a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+ </div>
+
+        
+
+        
+          <div class="comments" id="comments">
+            
+              <div class="ds-thread" data-thread-key="2015/09/29/Android-Support-Design-Library-CoordinatorLayout/"
+                   data-title="Android Support Design Library - CoordinatorLayout" data-url="/2015/09/29/Android-Support-Design-Library-CoordinatorLayout/">
+              </div>
+            
+          </div>
+        
+      </div>
+
+      
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table Of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="/images/pic.jpg" alt="Light" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">Light</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description">Someday you may become the one you want to be.</p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">24</span>
+              <span class="site-state-item-name">posts</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/all-categories">
+              <span class="site-state-item-count">5</span>
+              <span class="site-state-item-name">categories</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/all-tags">
+              <span class="site-state-item-count">39</span>
+              <span class="site-state-item-name">tags</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="menu-item-icon icon-next-feed"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/lightlz" target="_blank">GitHub</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto://light.lz1993@gmail.com" target="_blank">Email</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator"></div>
+          <div class="post-toc">
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#概述"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Dependencies"><span class="nav-number">1.1.</span> <span class="nav-text">Dependencies</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Standard_app_bar_预览"><span class="nav-number">2.</span> <span class="nav-text">Standard app bar 预览</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#布局"><span class="nav-number">2.1.</span> <span class="nav-text">布局</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#layout_scrollFlags"><span class="nav-number">2.2.</span> <span class="nav-text">layout_scrollFlags</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Tabs_预览"><span class="nav-number">3.</span> <span class="nav-text">Tabs 预览</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#布局-1"><span class="nav-number">3.1.</span> <span class="nav-text">布局</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Flexible_space_预览"><span class="nav-number">4.</span> <span class="nav-text">Flexible space 预览</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#布局-2"><span class="nav-number">4.1.</span> <span class="nav-text">布局</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考"><span class="nav-number">5.</span> <span class="nav-text">参考</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#源码"><span class="nav-number">6.</span> <span class="nav-text">源码</span></a></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator"></div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner"> <div class="copyright" >
+  
+  &copy; &nbsp; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Light</span>
+</div>
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="http://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+ </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+    
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"llzz"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+    
+     
+  	<script src="/js/ua-parser.min.js"></script>
+  	<script src="/js/hook-duoshuo.js"></script>
+  
+
+    
+  
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.1"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.1"></script>
+  
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.1" id="motion.global"></script>
+
+
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.1"></script>
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.1" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 0.4 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
+      }
+    }
+  });
+</script>
+
+
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+    });
+  </script>
+
+  
+
+  
+  
+
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"slide":{"type":"slide","bdImg":"3","bdPos":"left","bdTop":"250"}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+
+
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
+</body>
+</html>

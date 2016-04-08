@@ -1,0 +1,735 @@
+<!doctype html>
+<html class="theme-next use-motion theme-next-mist">
+<head>
+  
+
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+  <link href='//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+
+
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.1"/>
+
+
+    <meta name="description" content="Someday you may become the one you want to be." />
+
+
+
+  <meta name="keywords" content="Android Studio Gradle,Android Studio 打包,Gradle," />
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Light" type="application/atom+xml" />
+
+
+
+  <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.1" />
+
+
+<meta name="description" content="概述其实我也没有深入的了解 Gradle，因为 Android Studio 使用的是它，build 的时候需要。所以很多常用的功能需要用到它。
+Gradle 是项目自动化构建工具，Gradle Plugin User Guide 说到它的目标是：
+
+让重用代码和资源变得更加容易
+让创建同一应用程序的不同版本变得更加容易，无论是多个 APK 发布版本还是同一个应用的不同定制版本
+让构建过程变得更加">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android Studio Gradle">
+<meta property="og:url" content="/2015/07/31/Android-Gradle-Tools/index.html">
+<meta property="og:site_name" content="Light">
+<meta property="og:description" content="概述其实我也没有深入的了解 Gradle，因为 Android Studio 使用的是它，build 的时候需要。所以很多常用的功能需要用到它。
+Gradle 是项目自动化构建工具，Gradle Plugin User Guide 说到它的目标是：
+
+让重用代码和资源变得更加容易
+让创建同一应用程序的不同版本变得更加容易，无论是多个 APK 发布版本还是同一个应用的不同定制版本
+让构建过程变得更加">
+<meta property="og:image" content="/image0.png">
+<meta property="og:image" content="/image1.png">
+<meta property="og:image" content="/image2.png">
+<meta property="og:image" content="/image3.png">
+<meta property="og:image" content="/image4.png">
+<meta property="og:updated_time" content="2015-08-12T15:02:52.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android Studio Gradle">
+<meta name="twitter:description" content="概述其实我也没有深入的了解 Gradle，因为 Android Studio 使用的是它，build 的时候需要。所以很多常用的功能需要用到它。
+Gradle 是项目自动化构建工具，Gradle Plugin User Guide 说到它的目标是：
+
+让重用代码和资源变得更加容易
+让创建同一应用程序的不同版本变得更加容易，无论是多个 APK 发布版本还是同一个应用的不同定制版本
+让构建过程变得更加">
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: 'post'
+  };
+</script>
+
+  <title> Android Studio Gradle | Light </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?c4edb84f156d669a91e82332bff844a0";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><h1 class="site-meta">
+  <span class="logo-line-before"><i></i></span>
+  <a href="/" class="brand" rel="start">
+      <span class="logo">
+        <i class="icon-next-logo"></i>
+      </span>
+      <span class="site-title">Light</span>
+  </a>
+  <span class="logo-line-after"><i></i></span>
+</h1>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            <i class="menu-item-icon icon-next-home"></i> <br />
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/all-categories" rel="section">
+            <i class="menu-item-icon icon-next-categories"></i> <br />
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            <i class="menu-item-icon icon-next-archives"></i> <br />
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/all-tags" rel="section">
+            <i class="menu-item-icon icon-next-tags"></i> <br />
+            Tags
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content"> 
+
+  <div id="posts" class="posts-expand">
+    
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              Android Studio Gradle
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          Posted on
+          <time itemprop="dateCreated" datetime="2015-07-31T11:35:58+08:00" content="2015-07-31">
+            2015-07-31
+          </time>
+        </span>
+
+        
+          <span class="post-category" >
+            &nbsp; | &nbsp; In
+            
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <a href="/categories/Android/" itemprop="url" rel="index">
+                  <span itemprop="name">Android</span>
+                </a>
+              </span>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2015/07/31/Android-Gradle-Tools/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2015/07/31/Android-Gradle-Tools/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><h3 id="概述">概述</h3><p>其实我也没有深入的了解 Gradle，因为 Android Studio 使用的是它，build 的时候需要。所以很多常用的功能需要用到它。</p>
+<p>Gradle 是项目自动化构建工具，<a href="http://tools.android.com/tech-docs/new-build-system/user-guide#TOC-Introduction" target="_blank" rel="external">Gradle Plugin User Guide</a> 说到它的目标是：</p>
+<ul>
+<li>让重用代码和资源变得更加容易</li>
+<li>让创建同一应用程序的不同版本变得更加容易，无论是多个 APK 发布版本还是同一个应用的不同定制版本</li>
+<li>让构建过程变得更加容易配置，扩展和定制</li>
+<li>整合优秀的 IDE</li>
+</ul>
+<p>这里稍微整理了下经常使用的功能。</p>
+<h3 id="Manifest_属性">Manifest 属性</h3><ul>
+<li>minSdkVersion</li>
+<li>targetSdkVersion</li>
+<li>versionCode</li>
+<li>versionName</li>
+<li>applicationId</li>
+<li>Package Name for the test application</li>
+<li>Instrumentation test runner</li>
+</ul>
+<a id="more"></a>
+<p><img src="image0.png" alt=""></p>
+<p>这些配置之前在 eclipse 中是在 Manifest 文件中有配置的，在 Android Stuido 生成的 Manifest 中没有了，都在 build.gradle(app) 中配置。</p>
+<h3 id="签名">签名</h3><p>签名需要如下内容：</p>
+<ul>
+<li>A keystore</li>
+<li>A keystore password</li>
+<li>A key alias name</li>
+<li>A key password</li>
+<li>The store type</li>
+</ul>
+<p><img src="image1.png" alt=""></p>
+<p>debug 版本的这里没有进行配置，默认会有一个 debug.keystore。release 配置的时候，我以为直接在这里配置好后，会直接生成一个 keystore。但 build 的时候，是在 <code>app/</code> 根目录下寻找，报了没找到的错误。只好手动生成了个 keystore 放在那。</p>
+<p>如果你不愿意将 keyPassword 显示在这，或者不加入版本控制，可以在 <code>gradle.properties</code> 里面配置。</p>
+<figure class="highlight dns"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">KEYSTORE_PASSWORD=<span class="number">1111111</span></span><br><span class="line">KEY_PASSWORD=<span class="number">11111111</span></span><br></pre></td></tr></table></figure>
+<p>替换 signingConfigs 中的配置即可。</p>
+<h3 id="构建类型">构建类型</h3><p>默认情况下，buildTypes 里面会有 release 和 debug 两个版本。内容包括配置签名，混淆，更改其他配置等。</p>
+<p><img src="image2.png" alt=""></p>
+<p><code>signingConfig signingConfigs.release</code> 配置的是 release 签名，debug 的类似。</p>
+<h4 id="混淆">混淆</h4><figure class="highlight ocaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">minifyEnabled <span class="literal">true</span></span><br><span class="line">proguardFiles getDefaultProguardFile(<span class="symbol">'proguard</span>-android.txt'), <span class="symbol">'proguard</span>.cfg'</span><br></pre></td></tr></table></figure>
+<p>新版本的只要将 <code>minifyEnabled</code> 设置为 true 就会开启混淆。proguard-android.txt 是在 SDK 路径下的默认文件，proguard.cfg 是自己新加的，和 eclipse 中一样。文件里面的内容可以找个模版。</p>
+<h4 id="更改_APK_文件名">更改 APK 文件名</h4><figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">applicationVariants<span class="built_in">.</span><span class="literal">all</span> &#123; variant <span class="subst">-&gt;</span><br><span class="line"></span>variant<span class="built_in">.</span>outputs<span class="built_in">.</span>each &#123; output <span class="subst">-&gt;</span><br><span class="line"></span><span class="keyword">if</span> (output<span class="built_in">.</span>outputFile <span class="subst">!=</span> <span class="built_in">null</span> <span class="subst">&amp;&amp;</span> output<span class="built_in">.</span>outputFile<span class="built_in">.</span>name<span class="built_in">.</span>endsWith(<span class="string">'.apk'</span>)</span><br><span class="line">        <span class="subst">&amp;&amp;</span><span class="string">'release'</span><span class="built_in">.</span><span class="keyword">equals</span>(variant<span class="built_in">.</span>buildType<span class="built_in">.</span>name)) &#123;</span><br><span class="line">    def apkFile <span class="subst">=</span> <span class="literal">new</span> File(</span><br><span class="line">            output<span class="built_in">.</span>outputFile<span class="built_in">.</span>getParent(),</span><br><span class="line">            <span class="string">"app_$&#123;variant.flavorName&#125;_v$&#123;variant.versionName&#125;.apk"</span>)</span><br><span class="line">    output<span class="built_in">.</span>outputFile <span class="subst">=</span> apkFile</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br></pre></td></tr></table></figure>
+<p>输入的文件名 <code>app_${variant.flavorName}_v${variant.versionName}.apk</code>，包括了定制的 flavor 里面的名称和版本号。</p>
+<h4 id="BuildConfig">BuildConfig</h4><p>BuildConfig.java 是 Android Gradle 自动生成的一个文件，你可以通过 gradle 动态配置它的变量的值。可以设置 Log 在 debug 的时候显示，release 不显示。或者更改 release 和 debug 访问接口的网址。</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">defaultConfig</span> &#123;</span><br><span class="line"><span class="title">buildConfigField</span> <span class="string">'String'</span>,<span class="string">'API_SERVER_URL'</span>,<span class="string">'"http://llzz.me/"'</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在 release 和 debug 设置不同的 URL。在 BuildConfig.java 中就会生成这个变量。在使用 URL 的地方使用 BuildConfig.java 类就行。</p>
+<h3 id="多渠道打包">多渠道打包</h3><p>多渠道打包没有 ANT 中配置那么多，直接使用 <code>productFlavors</code> 属性就可以替换 UMENG_CHANNEL。</p>
+<p><img src="image3.png" alt=""></p>
+<p><code>productFlavors.all</code> 里面会循环替换 UMENG_CHANNEL。</p>
+<h3 id="生成_APK">生成 APK</h3><p>生成 APK 可以使用 gradle 的命令执行。我是直接在 Android Studio 的 Gradle Project 面板生成的。</p>
+<p><img src="image4.png" alt=""></p>
+<p>双击就可以生成，看目录就知道是可以单个生成的。APK 输出是在 <code>app/build/outputs</code> 目录。</p>
+</span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Android-Studio-Gradle/" rel="tag">#Android Studio Gradle</a>
+          
+            <a href="/tags/Android-Studio-打包/" rel="tag">#Android Studio 打包</a>
+          
+            <a href="/tags/Gradle/" rel="tag">#Gradle</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/08/10/NDK-With-Android-Studio/" rel="prev">NDK With Android Studio</a>
+            
+          </div>
+
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/07/17/Android-Studio-Plugins/" rel="next">Android Studio Plugins</a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+ </div>
+
+        
+
+        
+          <div class="comments" id="comments">
+            
+              <div class="ds-thread" data-thread-key="2015/07/31/Android-Gradle-Tools/"
+                   data-title="Android Studio Gradle" data-url="/2015/07/31/Android-Gradle-Tools/">
+              </div>
+            
+          </div>
+        
+      </div>
+
+      
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table Of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="/images/pic.jpg" alt="Light" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">Light</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description">Someday you may become the one you want to be.</p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">24</span>
+              <span class="site-state-item-name">posts</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/all-categories">
+              <span class="site-state-item-count">5</span>
+              <span class="site-state-item-name">categories</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/all-tags">
+              <span class="site-state-item-count">39</span>
+              <span class="site-state-item-name">tags</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="menu-item-icon icon-next-feed"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/lightlz" target="_blank">GitHub</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto://light.lz1993@gmail.com" target="_blank">Email</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator"></div>
+          <div class="post-toc">
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#概述"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Manifest_属性"><span class="nav-number">2.</span> <span class="nav-text">Manifest 属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#签名"><span class="nav-number">3.</span> <span class="nav-text">签名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#构建类型"><span class="nav-number">4.</span> <span class="nav-text">构建类型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#混淆"><span class="nav-number">4.1.</span> <span class="nav-text">混淆</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#更改_APK_文件名"><span class="nav-number">4.2.</span> <span class="nav-text">更改 APK 文件名</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#BuildConfig"><span class="nav-number">4.3.</span> <span class="nav-text">BuildConfig</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多渠道打包"><span class="nav-number">5.</span> <span class="nav-text">多渠道打包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#生成_APK"><span class="nav-number">6.</span> <span class="nav-text">生成 APK</span></a></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator"></div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner"> <div class="copyright" >
+  
+  &copy; &nbsp; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Light</span>
+</div>
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="http://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+ </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+    
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"llzz"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+    
+     
+  	<script src="/js/ua-parser.min.js"></script>
+  	<script src="/js/hook-duoshuo.js"></script>
+  
+
+    
+  
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.1"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.1"></script>
+  
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.1" id="motion.global"></script>
+
+
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.1"></script>
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.1" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 0.4 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
+      }
+    }
+  });
+</script>
+
+
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+    });
+  </script>
+
+  
+
+  
+  
+
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"slide":{"type":"slide","bdImg":"3","bdPos":"left","bdTop":"250"}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+
+
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
+</body>
+</html>

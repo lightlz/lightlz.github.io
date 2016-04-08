@@ -1,0 +1,699 @@
+<!doctype html>
+<html class="theme-next use-motion theme-next-mist">
+<head>
+  
+
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+  <link href='//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+
+
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.1"/>
+
+
+    <meta name="description" content="Someday you may become the one you want to be." />
+
+
+
+  <meta name="keywords" content="Material Design Lite," />
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Light" type="application/atom+xml" />
+
+
+
+  <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.1" />
+
+
+<meta name="description" content="今天在翻「增长黑客」这本书的时候，意外看到乔布斯演讲当中的一句话，感觉这汤好猛。
+
+你不可能从现在预测到未来，只有回头看时，才会发现事物之间的联系。所以你必须相信，那些生命中的点点滴滴，将会在你未来的生命里，以某种方式串联起来。你必须始终相信一些东西－－你的勇气，宿命，生活，因缘，随便什么，它们将给你追寻内心真正所想的自信，带你走离平凡，变得与众不同。
+
+虽然和今天写的内容并没有什么关联，但是今天">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Material Design Lite">
+<meta property="og:url" content="/2016/04/07/Material-Design-Lite/index.html">
+<meta property="og:site_name" content="Light">
+<meta property="og:description" content="今天在翻「增长黑客」这本书的时候，意外看到乔布斯演讲当中的一句话，感觉这汤好猛。
+
+你不可能从现在预测到未来，只有回头看时，才会发现事物之间的联系。所以你必须相信，那些生命中的点点滴滴，将会在你未来的生命里，以某种方式串联起来。你必须始终相信一些东西－－你的勇气，宿命，生活，因缘，随便什么，它们将给你追寻内心真正所想的自信，带你走离平凡，变得与众不同。
+
+虽然和今天写的内容并没有什么关联，但是今天">
+<meta property="og:image" content="http://7xluln.com1.z0.glb.clouddn.com/materialdesign_introduction.png">
+<meta property="og:image" content="http://7xluln.com1.z0.glb.clouddn.com/blog_1.png">
+<meta property="og:image" content="http://7xluln.com1.z0.glb.clouddn.com/blog_2.png">
+<meta property="og:image" content="http://7xluln.com1.z0.glb.clouddn.com/blog_3.png">
+<meta property="og:updated_time" content="2016-04-08T07:16:27.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Material Design Lite">
+<meta name="twitter:description" content="今天在翻「增长黑客」这本书的时候，意外看到乔布斯演讲当中的一句话，感觉这汤好猛。
+
+你不可能从现在预测到未来，只有回头看时，才会发现事物之间的联系。所以你必须相信，那些生命中的点点滴滴，将会在你未来的生命里，以某种方式串联起来。你必须始终相信一些东西－－你的勇气，宿命，生活，因缘，随便什么，它们将给你追寻内心真正所想的自信，带你走离平凡，变得与众不同。
+
+虽然和今天写的内容并没有什么关联，但是今天">
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: 'post'
+  };
+</script>
+
+  <title> Material Design Lite | Light </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?c4edb84f156d669a91e82332bff844a0";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><h1 class="site-meta">
+  <span class="logo-line-before"><i></i></span>
+  <a href="/" class="brand" rel="start">
+      <span class="logo">
+        <i class="icon-next-logo"></i>
+      </span>
+      <span class="site-title">Light</span>
+  </a>
+  <span class="logo-line-after"><i></i></span>
+</h1>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            <i class="menu-item-icon icon-next-home"></i> <br />
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/all-categories" rel="section">
+            <i class="menu-item-icon icon-next-categories"></i> <br />
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            <i class="menu-item-icon icon-next-archives"></i> <br />
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/all-tags" rel="section">
+            <i class="menu-item-icon icon-next-tags"></i> <br />
+            Tags
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content"> 
+
+  <div id="posts" class="posts-expand">
+    
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              Material Design Lite
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          Posted on
+          <time itemprop="dateCreated" datetime="2016-04-07T19:06:24+08:00" content="2016-04-07">
+            2016-04-07
+          </time>
+        </span>
+
+        
+          <span class="post-category" >
+            &nbsp; | &nbsp; In
+            
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <a href="/categories/Web/" itemprop="url" rel="index">
+                  <span itemprop="name">Web</span>
+                </a>
+              </span>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2016/04/07/Material-Design-Lite/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/07/Material-Design-Lite/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><p>今天在翻「增长黑客」这本书的时候，意外看到乔布斯演讲当中的一句话，感觉这汤好猛。</p>
+<blockquote>
+<p>你不可能从现在预测到未来，只有回头看时，才会发现事物之间的联系。所以你必须相信，那些生命中的点点滴滴，将会在你未来的生命里，以某种方式串联起来。你必须始终相信一些东西－－你的勇气，宿命，生活，因缘，随便什么，它们将给你追寻内心真正所想的自信，带你走离平凡，变得与众不同。</p>
+</blockquote>
+<p>虽然和今天写的内容并没有什么关联，但是今天令我感觉深刻的就是这句话，所以用它作为开篇也无妨。</p>
+<h3 id="Material_Design_Lite">Material Design Lite</h3><p>Material Design Lite (MDL) 可以让你制作出 Material Design 风格的网页。它提供了一套 MD 风格的 CSS 和 material.js。如果你不知道 MD 设计风格是怎么样的，可以自行脑补一下。它的层级，阴影，动画效果一定能够让你喜悦。</p>
+<p><img src="http://7xluln.com1.z0.glb.clouddn.com/materialdesign_introduction.png" alt="image"></p>
+<a id="more"></a>
+<p>我此前并没有学习过 Web 相关的东西，使用 MDL 纯粹是因为个人喜好。因为我喜欢 Material Design，看我之前的 Blog 也能知道在 Android 开发方面也经常使用。重点的是因为喜欢，还有一些工作上的需求，所以想学下，从搭建自己的 Blog 入手。应该会把它制作成 Hexo 的一个主题。</p>
+<p>官方有个例子是这样的，感觉不错，估计会仿照它的模式来做。</p>
+<p><img src="http://7xluln.com1.z0.glb.clouddn.com/blog_1.png" alt="image"></p>
+<p><img src="http://7xluln.com1.z0.glb.clouddn.com/blog_2.png" alt="image"></p>
+<p>也有人说，Blog 注重的是内容，如果内容不那么好，样子好也没什么用啊。当然也是对的，优质的内容并不是很容易产出的。再者如果一个女孩子的内心不太好，可是长得漂亮，一样有人会喜欢对不对。我也就剩下这么点追求了。</p>
+<h3 id="Getting_Started">Getting Started</h3><p>其实它官方的 Getting Started 已经写的很详细了。它提供 5 种方式使用 MDL。因为一些科学上网的因素，我直接将它的 CSS 和 Javascript 下载了下来。下载下来是一个 mdl 文件夹，使用这个就可以开始制作 MD 风格的网页。</p>
+<p>使用的时候在 head 里面引入即可。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">head</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="title">link</span> <span class="attribute">rel</span>=<span class="value">"stylesheet"</span> <span class="attribute">href</span>=<span class="value">"./mdl/material.min.css"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="title">script</span> <span class="attribute">src</span>=<span class="value">"./mdl/material.min.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="title">link</span> <span class="attribute">rel</span>=<span class="value">"stylesheet"</span> <span class="attribute">href</span>=<span class="value">"https://fonts.googleapis.com/icon?family=Material+Icons"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="title">link</span> <span class="attribute">rel</span>=<span class="value">"stylesheet"</span> <span class="attribute">href</span>=<span class="value">"styles.css"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="title">title</span>&gt;</span> Hello World <span class="tag">&lt;/<span class="title">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">head</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>关于 Google 字体加载慢的问题可以将 <code>fonts.googleapis.com</code> 替换成 <code>fonts.useso.com</code>。应该是可以的，或者使用其他 CDN。</p>
+<h4 id="CSS_Theme">CSS Theme</h4><p>有一个很好玩很便捷的自定义颜色选择，它可以用你选择的颜色生成 CSS 主题。</p>
+<p><img src="http://7xluln.com1.z0.glb.clouddn.com/blog_3.png" alt="image"></p>
+<h4 id="Components">Components</h4><p>官网已经把用到的所有组件都给出了示例代码，很快就能够做出个样子。比如导航栏。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- Always shows a header, even in smaller screens. --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"mdl-layout mdl-js-layout mdl-layout--fixed-header"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="title">header</span> <span class="attribute">class</span>=<span class="value">"mdl-layout__header"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"mdl-layout__header-row"</span>&gt;</span></span><br><span class="line">      <span class="comment">&lt;!-- Title --&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="title">span</span> <span class="attribute">class</span>=<span class="value">"mdl-layout-title"</span>&gt;</span>Title<span class="tag">&lt;/<span class="title">span</span>&gt;</span></span><br><span class="line">      <span class="comment">&lt;!-- Add spacer, to align navigation to the right --&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"mdl-layout-spacer"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line">      <span class="comment">&lt;!-- Navigation. We hide it in small screens. --&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="title">nav</span> <span class="attribute">class</span>=<span class="value">"mdl-navigation mdl-layout--large-screen-only"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">a</span> <span class="attribute">class</span>=<span class="value">"mdl-navigation__link"</span> <span class="attribute">href</span>=<span class="value">""</span>&gt;</span>Link<span class="tag">&lt;/<span class="title">a</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">a</span> <span class="attribute">class</span>=<span class="value">"mdl-navigation__link"</span> <span class="attribute">href</span>=<span class="value">""</span>&gt;</span>Link<span class="tag">&lt;/<span class="title">a</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">a</span> <span class="attribute">class</span>=<span class="value">"mdl-navigation__link"</span> <span class="attribute">href</span>=<span class="value">""</span>&gt;</span>Link<span class="tag">&lt;/<span class="title">a</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">a</span> <span class="attribute">class</span>=<span class="value">"mdl-navigation__link"</span> <span class="attribute">href</span>=<span class="value">""</span>&gt;</span>Link<span class="tag">&lt;/<span class="title">a</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="title">nav</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="title">header</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"mdl-layout__drawer"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">span</span> <span class="attribute">class</span>=<span class="value">"mdl-layout-title"</span>&gt;</span>Title<span class="tag">&lt;/<span class="title">span</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">nav</span> <span class="attribute">class</span>=<span class="value">"mdl-navigation"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="title">a</span> <span class="attribute">class</span>=<span class="value">"mdl-navigation__link"</span> <span class="attribute">href</span>=<span class="value">""</span>&gt;</span>Link<span class="tag">&lt;/<span class="title">a</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="title">a</span> <span class="attribute">class</span>=<span class="value">"mdl-navigation__link"</span> <span class="attribute">href</span>=<span class="value">""</span>&gt;</span>Link<span class="tag">&lt;/<span class="title">a</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="title">a</span> <span class="attribute">class</span>=<span class="value">"mdl-navigation__link"</span> <span class="attribute">href</span>=<span class="value">""</span>&gt;</span>Link<span class="tag">&lt;/<span class="title">a</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="title">a</span> <span class="attribute">class</span>=<span class="value">"mdl-navigation__link"</span> <span class="attribute">href</span>=<span class="value">""</span>&gt;</span>Link<span class="tag">&lt;/<span class="title">a</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="title">nav</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="title">main</span> <span class="attribute">class</span>=<span class="value">"mdl-layout__content"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"page-content"</span>&gt;</span><span class="comment">&lt;!-- Your content goes here --&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="title">main</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>效果可以自行在官网 Components 查看。</p>
+<p>看了它个几个示例，能够手操几个简单的东西。然后发现很多模式不明白。还是老老实实把 H5 和 CSS 基本知识看了下。就这样，走一步算一步吧。</p>
+<p>下一篇将使用 Sketch 手操 Blog 的交互和设计。</p>
+</span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Material-Design-Lite/" rel="tag">#Material Design Lite</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/10/14/RecyclerView-2/" rel="next">RecyclerView 2</a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+ </div>
+
+        
+
+        
+          <div class="comments" id="comments">
+            
+              <div class="ds-thread" data-thread-key="2016/04/07/Material-Design-Lite/"
+                   data-title="Material Design Lite" data-url="/2016/04/07/Material-Design-Lite/">
+              </div>
+            
+          </div>
+        
+      </div>
+
+      
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table Of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="/images/pic.jpg" alt="Light" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">Light</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description">Someday you may become the one you want to be.</p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">24</span>
+              <span class="site-state-item-name">posts</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/all-categories">
+              <span class="site-state-item-count">5</span>
+              <span class="site-state-item-name">categories</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/all-tags">
+              <span class="site-state-item-count">39</span>
+              <span class="site-state-item-name">tags</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="menu-item-icon icon-next-feed"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/lightlz" target="_blank">GitHub</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto://light.lz1993@gmail.com" target="_blank">Email</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator"></div>
+          <div class="post-toc">
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Material_Design_Lite"><span class="nav-number">1.</span> <span class="nav-text">Material Design Lite</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Getting_Started"><span class="nav-number">2.</span> <span class="nav-text">Getting Started</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#CSS_Theme"><span class="nav-number">2.1.</span> <span class="nav-text">CSS Theme</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Components"><span class="nav-number">2.2.</span> <span class="nav-text">Components</span></a></li></ol></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator"></div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner"> <div class="copyright" >
+  
+  &copy; &nbsp; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Light</span>
+</div>
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="http://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+ </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+    
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"llzz"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+    
+     
+  	<script src="/js/ua-parser.min.js"></script>
+  	<script src="/js/hook-duoshuo.js"></script>
+  
+
+    
+  
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.1"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.1"></script>
+  
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.1" id="motion.global"></script>
+
+
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.1"></script>
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.1" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 0.4 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
+      }
+    }
+  });
+</script>
+
+
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+    });
+  </script>
+
+  
+
+  
+  
+
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"slide":{"type":"slide","bdImg":"3","bdPos":"left","bdTop":"250"}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+
+
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
+</body>
+</html>
