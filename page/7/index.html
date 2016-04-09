@@ -44,7 +44,7 @@
 <meta name="description" content="Someday you may become the one you want to be.">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Light">
-<meta property="og:url" content="/archives/2015/index.html">
+<meta property="og:url" content="/page/7/index.html">
 <meta property="og:site_name" content="Light">
 <meta property="og:description" content="Someday you may become the one you want to be.">
 <meta name="twitter:card" content="summary">
@@ -59,7 +59,7 @@
   };
 </script>
 
-  <title> Archive | Light </title>
+  <title> Light </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="en">
@@ -87,7 +87,9 @@
 
 
 
-  <div class="container one-column  page-archive ">
+  <div class="container one-column 
+   page-home 
+">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -163,157 +165,114 @@
     <main id="main" class="main">
       <div class="main-inner">
         <div id="content" class="content"> 
-
-  <section id="posts" class="posts-collapse">
-    <span class="archive-move-on"></span>
-
-    <span class="archive-page-counter">
-      
-      
-      
-        
-      
-      ..! 25 posts in total. :)
-    </span>
-
+  <section id="posts" class="posts-expand">
     
-
-      
-      
       
 
-      
-        
-        <div class="collection-title">
-          <h2 class="archive-year motion-element" id="archive-year-2015">2015</h2>
-        </div>
-      
-      
-
-      
-
-  <article class="post post-type-normal"itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <header class="post-header">
 
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2015/10/14/RecyclerView-2/" itemprop="url">
-              <span itemprop="name">RecyclerView 2</span>
-            </a>
-        
-      </h1>
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              <a class="post-title-link" href="/2014/12/11/android-studio-e4-bd-93-e9-aa-8c/" itemprop="url">
+                Android Studio 体验
+              </a>
+            
+          
+        </h1>
+      
 
       <div class="post-meta">
-        <time class="post-time" datetime="2015-10-14T15:25:13.000Z" itemprop="dateCreated" content="2015-10-14"> 10-14 </time>
-      </div>
+        <span class="post-time">
+          Posted on
+          <time itemprop="dateCreated" datetime="2014-12-11T23:54:05+08:00" content="2014-12-11">
+            2014-12-11
+          </time>
+        </span>
 
+        
+          <span class="post-category" >
+            &nbsp; | &nbsp; In
+            
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <a href="/categories/Android/" itemprop="url" rel="index">
+                  <span itemprop="name">Android</span>
+                </a>
+              </span>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2014/12/11/android-studio-e4-bd-93-e9-aa-8c/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2014/12/11/android-studio-e4-bd-93-e9-aa-8c/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+          
+        
+      </div>
     </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody"><p>12/08 Android Studio 1.0发布，据说是稳定版。好吧那就再下载来试试（之前下过两次，然后…）</p>
+<p>用VPN残忍的下了一晚，感觉世界都慢了。</p>
+<p>下完之后，按照standard安装了。</p>
+<p>就来说说，AS到底是哪里比较帅？</p>
+<p>首先再次来了一个HelloWorld，加载速度比之前快了很多。</p>
+<p><a href="http://llzz.me/wp-content/uploads/2014/12/first.png" target="_blank" rel="external"><img src="http://llzz.me/wp-content/uploads/2014/12/first.png" alt="as_first"></a></p>
+<p>改了个theme：Darcula和字体大小，纯黑的背景好有极客范，有没有！？</p>
+<p><a href="http://llzz.me/wp-content/uploads/2014/12/second.png" target="_blank" rel="external"><img src="http://llzz.me/wp-content/uploads/2014/12/second.png" alt="as_second"></a></p>
+<p>&nbsp;</p>
+<p>在xml查看的时候，发现竟然可以看到全部尺寸的效果，这个是eclipse没有的。帅不？</p>
+<p>当写布局文件的时候打入&lt;Button 按enter之后，竟然会直接给你显示出layout_height&amp;width，再也不用自己动手再输入了！</p>
+<p>关于快捷键，我之前是用的eclipse，所以可以直接在settings搜索keymaps可以设定。</p>
+<p>在使用的时候遇到一个问题：SDK Manager 无法打开，直接闪退，在eclipse当中是没有问题的。</p>
+<p>解决方案：</p>
+<p>直接修改 Android.bat中<br>rem Check we have a valid Java.exe in the path.<br>set java_exe= <strong>C:\Program Files\Java\jdk1.7\jre\bin\java.exe</strong><br><strong>REM</strong> call lib\find_java.bat<br><strong>REM</strong> if not defined java_exe goto :EOF</p>
+<p>更改之后就ok了。</p>
+<p>体验就到这，其实这都还不是as的优点，还有很多很帅的地方。</p>
+</span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
   </article>
 
 
-
     
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal"itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2015/10/08/RecyclerView-1/" itemprop="url">
-              <span itemprop="name">RecyclerView 1</span>
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" datetime="2015-10-08T15:18:04.000Z" itemprop="dateCreated" content="2015-10-08"> 10-08 </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal"itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2015/09/29/Android-Support-Design-Library-CoordinatorLayout/" itemprop="url">
-              <span itemprop="name">Android Support Design Library - CoordinatorLayout</span>
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" datetime="2015-09-29T03:08:48.000Z" itemprop="dateCreated" content="2015-09-29"> 09-29 </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal"itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2015/09/25/Android-Support-Design-Library-PercentLayout/" itemprop="url">
-              <span itemprop="name">Android Support Design Library - PercentLayout</span>
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" datetime="2015-09-25T02:20:05.000Z" itemprop="dateCreated" content="2015-09-25"> 09-25 </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/archives/2015/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/archives/2015/page/6/">6</a><a class="extend next" rel="next" href="/archives/2015/page/2/">&raquo;</a>
+    <a class="extend prev" rel="prev" href="/page/6/">&laquo;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span>
   </nav>
-
 
  </div>
 
@@ -441,12 +400,6 @@
   
   
   
-    <script type="text/javascript">
-      postMotionOptions = {stagger: 100, drag: true};
-    </script>
-  
-
-  
     
 
   
@@ -492,12 +445,6 @@
   <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
 
   
-  
-    <script type="text/javascript" id="motion.page.archive">
-      $('.archive-year').velocity('transition.slideLeftIn');
-    </script>
-  
-
 
   <script type="text/javascript">
     $(document).ready(function () {

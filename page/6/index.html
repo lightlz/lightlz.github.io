@@ -178,6 +178,132 @@
           
           
             
+              <a class="post-title-link" href="/2015/02/06/android-e6-8b-8d-e7-85-a7-e7-9b-b8-e5-86-8c-e5-9b-be-e7-89-87/" itemprop="url">
+                Android 拍照 & 相册图片
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          Posted on
+          <time itemprop="dateCreated" datetime="2015-02-06T11:53:37+08:00" content="2015-02-06">
+            2015-02-06
+          </time>
+        </span>
+
+        
+          <span class="post-category" >
+            &nbsp; | &nbsp; In
+            
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <a href="/categories/Android/" itemprop="url" rel="index">
+                  <span itemprop="name">Android</span>
+                </a>
+              </span>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2015/02/06/android-e6-8b-8d-e7-85-a7-e7-9b-b8-e5-86-8c-e5-9b-be-e7-89-87/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2015/02/06/android-e6-8b-8d-e7-85-a7-e7-9b-b8-e5-86-8c-e5-9b-be-e7-89-87/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody"><p>因为项目需要用到类似于朋友圈这个功能，所以会使用到拍照和相册图片选择。</p>
+<p>搜索了一下，发现实现的例子很多，大多数用的 universal-image-loader 这个第三方库，有的使用了下效果不太理想。</p>
+<p>多方参照下粗略写了下，图片列表感觉也顺畅。</p>
+<p>&nbsp;</p>
+<ul>
+<li><strong>拍照</strong><br>&nbsp;</li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="http://llzz.me/wp-content/uploads/2015/02/device-2015-02-06-103912.png" target="_blank" rel="external"><img src="http://llzz.me/wp-content/uploads/2015/02/device-2015-02-06-103912-576x1024.png" alt="device-2015-02-06-103912"></a></p>
+<p>&nbsp;</p>
+<p>界面很普通，那个 [+] 号又两个 Action，长按表示拍照，点击表示相册选择，个人觉得这样交互还过的去。</p>
+<p>拍照功能:</p>
+<p><pre> Intent openCameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);<br> File file = new File(getTempBmpDir()+<br> String.valueOf(System.currentTimeMillis()+ “.jpg”));<br> Uri uri = Uri.fromFile(file);<br> BitmapConstant.BITMAP_PATH = file.getPath();<br> openCameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, uri);<br> this.startActivityForResult(openCameraIntent, BitmapConstant.TAKE_PICTURE);</pre><br>这个只是调用系统的拍照，然后将图片保存下。然后 onActivityResult 接收进行压缩处理。</p>
+<p>压缩方法也能找到很多，这里用的查看<a href="https://github.com/lightlz/FriendsMoments/blob/master/FriendsCommunity/src/com/light/friendscommunity/utils/ImageUtils.java" target="_blank" rel="external">这里</a>。</p>
+<p>&nbsp;</p>
+<ul>
+<li><strong>相册图片选择</strong><br>&nbsp;</li>
+</ul>
+<p><a href="http://llzz.me/wp-content/uploads/2015/02/device-2015-02-06-103734.png" target="_blank" rel="external"><img src="http://llzz.me/wp-content/uploads/2015/02/device-2015-02-06-103734-576x1024.png" alt="device-2015-02-06-103734"></a></p>
+<p>&nbsp;</p>
+<p>相册图片显示主要是获取到图片的缩略图和图片缓存方式。</p>
+<p>相册图片缩略图和原图对应关系，及如何获取这篇<a href="http://blog.csdn.net/java2009cgh/article/details/8364735" target="_blank" rel="external">博文</a>讲的清楚 。</p>
+<p>底部是一个 PopupWindow， 用于展示相册的目录，和 Lofter 相册选择相似，当然这里粗糙多了。</p>
+<p>&nbsp;</p>
+<p>相册展示功能:</p>
+<ul>
+<li><p>获取缩略图信息</p>
+</li>
+<li><p>获取原图信息</p>
+</li>
+<li><p>保存原图与缩略图的对应关系</p>
+</li>
+<li><p>使用 SoftReference 缓存 Bitmap</p>
+</li>
+<li><p>若没有缩略图用原图压缩显示（压缩方法和拍照那里相同）</p>
+</li>
+</ul>
+<p><span style="color: #808080;">SoftReference ： 软引用，实现内存的高速缓存，内存足够时，系统不会回收。</span></p>
+<p>&nbsp;</p>
+<p>功能写到这就不想写了，还有图片点击选择后返回发布界面的功能等~</p>
+<p><a href="https://github.com/lightlz/FriendsMoments" target="_blank" rel="external">源码请点这里</a></p>
+<p>&nbsp;</p>
+</span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
               <a class="post-title-link" href="/2015/02/05/python-e9-83-a8-e7-bd-b2-ef-bc-88sae-ef-bc-89/" itemprop="url">
                 Python 部署（Sae）
               </a>
@@ -650,111 +776,11 @@ build<span class="class">.xml</span>   <span class="id">#ant</span> 的构建文
 
 
     
-      
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      
-      
-        <h1 class="post-title" itemprop="name headline">
-          
-          
-            
-              <a class="post-title-link" href="/2014/12/11/android-studio-e4-bd-93-e9-aa-8c/" itemprop="url">
-                Android Studio 体验
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          Posted on
-          <time itemprop="dateCreated" datetime="2014-12-11T23:54:05+08:00" content="2014-12-11">
-            2014-12-11
-          </time>
-        </span>
-
-        
-          <span class="post-category" >
-            &nbsp; | &nbsp; In
-            
-              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                <a href="/categories/Android/" itemprop="url" rel="index">
-                  <span itemprop="name">Android</span>
-                </a>
-              </span>
-
-              
-              
-
-            
-          </span>
-        
-
-        
-          
-            <span class="post-comments-count">
-              &nbsp; | &nbsp;
-              <a href="/2014/12/11/android-studio-e4-bd-93-e9-aa-8c/#comments" itemprop="discussionUrl">
-                <span class="post-comments-count ds-thread-count" data-thread-key="2014/12/11/android-studio-e4-bd-93-e9-aa-8c/" itemprop="commentsCount"></span>
-              </a>
-            </span>
-          
-        
-      </div>
-    </header>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody"><p>12/08 Android Studio 1.0发布，据说是稳定版。好吧那就再下载来试试（之前下过两次，然后…）</p>
-<p>用VPN残忍的下了一晚，感觉世界都慢了。</p>
-<p>下完之后，按照standard安装了。</p>
-<p>就来说说，AS到底是哪里比较帅？</p>
-<p>首先再次来了一个HelloWorld，加载速度比之前快了很多。</p>
-<p><a href="http://llzz.me/wp-content/uploads/2014/12/first.png" target="_blank" rel="external"><img src="http://llzz.me/wp-content/uploads/2014/12/first.png" alt="as_first"></a></p>
-<p>改了个theme：Darcula和字体大小，纯黑的背景好有极客范，有没有！？</p>
-<p><a href="http://llzz.me/wp-content/uploads/2014/12/second.png" target="_blank" rel="external"><img src="http://llzz.me/wp-content/uploads/2014/12/second.png" alt="as_second"></a></p>
-<p>&nbsp;</p>
-<p>在xml查看的时候，发现竟然可以看到全部尺寸的效果，这个是eclipse没有的。帅不？</p>
-<p>当写布局文件的时候打入&lt;Button 按enter之后，竟然会直接给你显示出layout_height&amp;width，再也不用自己动手再输入了！</p>
-<p>关于快捷键，我之前是用的eclipse，所以可以直接在settings搜索keymaps可以设定。</p>
-<p>在使用的时候遇到一个问题：SDK Manager 无法打开，直接闪退，在eclipse当中是没有问题的。</p>
-<p>解决方案：</p>
-<p>直接修改 Android.bat中<br>rem Check we have a valid Java.exe in the path.<br>set java_exe= <strong>C:\Program Files\Java\jdk1.7\jre\bin\java.exe</strong><br><strong>REM</strong> call lib\find_java.bat<br><strong>REM</strong> if not defined java_exe goto :EOF</p>
-<p>更改之后就ok了。</p>
-<p>体验就到这，其实这都还不是as的优点，还有很多很帅的地方。</p>
-</span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/5/">&laquo;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span>
+    <a class="extend prev" rel="prev" href="/page/5/">&laquo;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/7/">&raquo;</a>
   </nav>
 
  </div>
@@ -788,7 +814,7 @@ build<span class="class">.xml</span>   <span class="id">#ant</span> 的构建文
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">24</span>
+              <span class="site-state-item-count">25</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>
@@ -802,7 +828,7 @@ build<span class="class">.xml</span>   <span class="id">#ant</span> 的构建文
 
           <div class="site-state-item site-state-tags">
             <a href="/all-tags">
-              <span class="site-state-item-count">39</span>
+              <span class="site-state-item-count">40</span>
               <span class="site-state-item-name">tags</span>
               </a>
           </div>
